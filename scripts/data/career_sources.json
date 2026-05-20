@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "description": "careerDirections 采集源配置。优先维护这里，再由 scraper.py 生成标准化数据。",
+  "careers": [
+    {
+      "id": "frontend",
+      "name": "前端开发",
+      "icon": "🎨",
+      "category": "frontend",
+      "description": "构建用户界面，关注交互、样式、工程化与性能。",
+      "skills": [
+        {
+          "id": "html_css",
+          "name": "HTML/CSS",
+          "icon": "📄",
+          "description": "网页结构与样式基础。",
+          "priority": "core",
+          "quizs": [],
+          "resources": [
+            {
+              "type": "docs",
+              "title": "MDN Web Docs - HTML",
+              "url": "https://developer.mozilla.org/zh-CN/docs/Web/HTML"
+            },
+            {
+              "type": "docs",
+              "title": "MDN Web Docs - CSS",
+              "url": "https://developer.mozilla.org/zh-CN/docs/Web/CSS"
+            },
+            {
+              "type": "course",
+              "title": "freeCodeCamp - 响应式网页设计",
+              "url": "https://www.freecodecamp.org/chinese/learn/2022/responsive-web-design/"
+            }
+          ]
+        },
+        {
+          "id": "javascript",
+          "name": "JavaScript",
+          "icon": "🟨",
+          "description": "前端交互与业务逻辑核心语言。",
+          "priority": "core",
+          "quizs": [],
+          "resources": [
+            {
+              "type": "docs",
+              "title": "JavaScript.info",
+              "url": "https://zh.javascript.info/"
+            },
+            {
+              "type": "docs",
+              "title": "MDN Web Docs - JavaScript",
+              "url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "backend",
+      "name": "后端开发",
+      "icon": "🧩",
+      "category": "backend",
+      "description": "负责服务端接口、数据库、业务逻辑与系统稳定性。",
+      "skills": [
+        {
+          "id": "java",
+          "name": "Java",
+          "icon": "☕",
+          "description": "企业级后端常用语言。",
+          "priority": "core",
+          "quizs": [],
+          "resources": [
+            {
+              "type": "tutorial",
+              "title": "菜鸟教程 - Java",
+              "url": "https://www.runoob.com/java/"
+            },
+            {
+              "type": "docs",
+              "title": "Oracle Java Documentation",
+              "url": "https://docs.oracle.com/en/java/"
+            }
+          ]
+        },
+        {
+          "id": "database",
+          "name": "数据库",
+          "icon": "🗄️",
+          "description": "关系型数据库与基础 SQL 能力。",
+          "priority": "important",
+          "quizs": [],
+          "resources": [
+            {
+              "type": "tutorial",
+              "title": "菜鸟教程 - MySQL",
+              "url": "https://www.runoob.com/mysql/mysql-tutorial.html"
+            },
+            {
+              "type": "practice",
+              "title": "SQLZoo",
+              "url": "https://sqlzoo.net/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ai_engineer",
+      "name": "AI 开发",
+      "icon": "🤖",
+      "category": "ai",
+      "description": "围绕机器学习、深度学习和大模型应用进行开发。",
+      "skills": [
+        {
+          "id": "ml_basics",
+          "name": "机器学习基础",
+          "icon": "📊",
+          "description": "掌握监督学习、特征工程与模型评估。",
+          "priority": "core",
+          "quizs": [],
+          "resources": [
+            {
+              "type": "docs",
+              "title": "Scikit-learn 中文文档",
+              "url": "https://scikit-learn.org.cn/"
+            }
+          ]
+        },
+        {
+          "id": "llm",
+          "name": "大模型应用",
+          "icon": "🧠",
+          "description": "围绕提示词、RAG、工具调用与应用开发。",
+          "priority": "important",
+          "quizs": [],
+          "resources": [
+            {
+              "type": "docs",
+              "title": "OpenAI API Docs",
+              "url": "https://platform.openai.com/docs"
+            },
+            {
+              "type": "docs",
+              "title": "LangChain Docs",
+              "url": "https://python.langchain.com/docs/"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
