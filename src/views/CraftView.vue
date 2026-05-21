@@ -281,10 +281,6 @@ function onNavChange(page: string) {
   store.setCurrentPage(page as any);
 }
 
-function getRarityClass(rarity: string): string {
-  return `item-rarity-${rarity}`;
-}
-
 function getMaterialIcon(id: string): string {
   const icons: Record<string, string> = {
     wood: '🧱',

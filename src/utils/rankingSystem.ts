@@ -3,7 +3,7 @@
  * 包含装备评分计算、全服排名等功能
  */
 
-import type { Equipment, Player, Inventory, Rarity } from '@/types/game';
+import type { Equipment, Player, Rarity } from '@/types/game';
 
 // ==================== 装备评分系统 ====================
 

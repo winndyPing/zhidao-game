@@ -7,7 +7,7 @@ interface Props {
   room: Room | null;
 }
 
-const props = defineProps<Props>();
+defineProps<Props>();
 
 const emit = defineEmits<{
   fight: [];

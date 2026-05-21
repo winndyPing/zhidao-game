@@ -2,7 +2,6 @@
 import { watch, ref } from 'vue';
 import type { Room } from '@/types/game';
 import type { LearningResource } from '@data/learningResources';
-import { useGameStore } from '@/stores/gameStore';
 import { getResourcesForSkill } from '@data/learningResources';
 import { careerDirections } from '@data/careerDirections';
 
@@ -18,15 +17,12 @@ const emit = defineEmits<{
   close: [];
 }>();
 
-const store = useGameStore();
 
 // 当前学习资源
 const currentLearning = ref<{ skillId: string; skillName: string; skillIcon: string; resource: LearningResource } | null>(null);
 
 // 加载学习资源
 function loadLearningResource() {
-  const career = store.user.careerDirection;
-  
   // 优先使用房间已关联的技能ID（如果用户之前选择过）
   if (props.room?.linkedSkillId) {
     const skill = getSkillById(props.room.linkedSkillId);

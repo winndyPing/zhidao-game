@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia';
 import { reactive, computed } from 'vue';
 import type {
-  DynamicData, StaticData, PageType, Material, Equipment, Recipe,
-  Player, Dungeon, Inventory, UserInfo, CareerDirection,
+  DynamicData, StaticData, PageType, Equipment, CareerDirection,
   EquipmentSet, SetBonus, EquipmentStats
 } from '@/types/game';
 import { dungeonGenerator } from '@/utils/dungeonGenerator';
@@ -12,12 +11,11 @@ import {
   saveUserData,
   loadUserData,
   addUserToList,
-  findUserByPhone,
   setCurrentUserPhone,
   clearCurrentUser,
   checkAutoLogin,
 } from '@/utils/storageUtils';
-import { adManager, AD_TYPES, type AdResult } from '@/utils/adManager';
+import { adManager, AD_TYPES } from '@/utils/adManager';
 
 // ==================== 套装定义 ====================
 
@@ -447,19 +445,6 @@ export const useGameStore = defineStore('game', () => {
   // ==================== 方案A: 装备强化系统 ====================
 
   // 强化消耗配置
-  const enhanceCosts: Record<number, { materials: { id: string; count: number }[]; cp: number; successRate: number }> = {
-    0: { materials: [{ id: 'wood', count: 2 }, { id: 'iron', count: 1 }], cp: 20, successRate: 1 },
-    1: { materials: [{ id: 'wood', count: 3 }, { id: 'iron', count: 2 }], cp: 30, successRate: 1 },
-    2: { materials: [{ id: 'iron', count: 3 }, { id: 'crystal', count: 1 }], cp: 50, successRate: 1 },
-    3: { materials: [{ id: 'iron', count: 4 }, { id: 'crystal', count: 1 }], cp: 70, successRate: 1 },
-    4: { materials: [{ id: 'iron', count: 5 }, { id: 'crystal', count: 2 }], cp: 100, successRate: 1 },
-    5: { materials: [{ id: 'crystal', count: 3 }, { id: 'bug', count: 5 }], cp: 150, successRate: 0.8 },
-    6: { materials: [{ id: 'crystal', count: 4 }, { id: 'bug', count: 8 }], cp: 200, successRate: 0.7 },
-    7: { materials: [{ id: 'crystal', count: 5 }, { id: 'bug', count: 10 }], cp: 300, successRate: 0.6 },
-    8: { materials: [{ id: 'crystal', count: 6 }, { id: 'bug', count: 15 }], cp: 400, successRate: 0.5 },
-    9: { materials: [{ id: 'crystal', count: 8 }, { id: 'bug', count: 20 }], cp: 500, successRate: 0.4 },
-  };
-
   interface EnhanceResult {
     success: boolean;
     newLevel: number;
