@@ -2,9 +2,17 @@
 
 ## Shareable preview link
 
-After GitHub Pages is enabled and the workflow finishes, the default preview address should be:
+After GitHub Pages is enabled and the workflow finishes:
 
 `https://winndyPing.github.io/zhidao-game/`
+
+Branch previews will be published to:
+
+`https://winndyPing.github.io/zhidao-game/previews/<branch-slug>/`
+
+Example:
+
+`https://winndyPing.github.io/zhidao-game/previews/feature-money-100/`
 
 ## One-line product positioning
 

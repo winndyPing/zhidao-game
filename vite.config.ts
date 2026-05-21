@@ -6,7 +6,7 @@ import autoprefixer from 'autoprefixer';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: process.env.GITHUB_ACTIONS ? '/zhidao-game/' : '/',
+  base: process.env.VITE_BASE_PATH || '/',
   plugins: [vue()],
   resolve: {
     alias: {
