@@ -2,13 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'Zpix';
-  src: url('https://cdn.jsdelivr.net/npm/zpix@1.0.0/dist/Zpix.ttf') format('truetype');
-  font-display: swap;
-}
-
 @layer base {
+  html,
+  body,
+  #app {
+    min-height: 100%;
+  }
+
   * {
     margin: 0;
     padding: 0;
@@ -17,23 +17,30 @@
   }
 
   body {
-    background-color: #0f380f;
-    font-family: 'Zpix', monospace;
+    background-color: #f6f1e7;
+    font-family: 'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif;
     font-size: 16px;
-    color: #0f380f;
+    color: #1f2418;
     min-height: 100vh;
+    overflow-x: hidden;
+    forced-color-adjust: none;
   }
 
   page {
-    background-color: #0f380f;
-    font-family: 'Zpix', monospace;
+    background-color: #f6f1e7;
+    font-family: 'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif;
     font-size: 16px;
+  }
+
+  #app {
+    overflow-x: hidden;
+    forced-color-adjust: none;
   }
 }
 
 @layer components {
   .pixel-btn {
-    @apply relative bg-gb-light border-none text-gb-darker font-pixel text-sm cursor-pointer m-1 px-4 py-2;
+    @apply relative bg-gb-light border-none text-gb-darker font-pixel text-sm cursor-pointer m-0 px-4 py-2;
     box-shadow: 
       -2px -2px 0 0 #0f380f,
       2px 2px 0 0 #9bbc0f,
@@ -156,7 +163,7 @@
   /* 输入框样式 */
   input[type="tel"],
   input[type="text"] {
-    font-family: 'Zpix', monospace;
+    font-family: 'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif;
   }
 
   input::placeholder {

@@ -1,34 +1,47 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import ArticleDetailPage from './components/ArticleDetailPage.vue';
 import GameContainer from './components/GameContainer.vue';
-import SalesLaunchpad from './components/SalesLaunchpad.vue';
+import MonetizationLanding from './components/MonetizationLanding.vue';
 
-const showDemo = ref(false);
+const currentView = ref<'landing' | 'demo' | 'article'>('landing');
+const currentArticleId = ref('');
 
 function enterDemo() {
-  showDemo.value = true;
+  currentView.value = 'demo';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function backToLaunchpad() {
-  showDemo.value = false;
+function backToLanding() {
+  currentView.value = 'landing';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openArticle(articleId: string) {
+  currentArticleId.value = articleId;
+  currentView.value = 'article';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
 
 <template>
   <div>
-    <template v-if="showDemo">
-      <div class="sticky top-0 z-50 border-b-4 border-gb-dark bg-gb-darker/95 px-4 py-3 backdrop-blur-sm">
-        <div class="mx-auto flex max-w-7xl items-center justify-between gap-4">
-          <div class="text-xs uppercase tracking-[0.28em] text-gb-light">Demo Mode</div>
-          <button class="pixel-btn !m-0 !px-4 !py-2 text-xs" @click="backToLaunchpad">
-            返回销售页
-          </button>
-        </div>
-      </div>
-      <GameContainer />
+    <template v-if="currentView === 'demo'">
+      <GameContainer @back="backToLanding" />
     </template>
-    <SalesLaunchpad v-else @enter-demo="enterDemo" />
+
+    <ArticleDetailPage
+      v-else-if="currentView === 'article'"
+      :article-id="currentArticleId"
+      @back="backToLanding"
+      @open-demo="enterDemo"
+      @open-article="openArticle"
+    />
+
+    <MonetizationLanding
+      v-else
+      @enter-demo="enterDemo"
+      @open-article="openArticle"
+    />
   </div>
 </template>

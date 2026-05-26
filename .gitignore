@@ -4,5 +4,6 @@ dist/
 Thumbs.db
 .env
 .env.*
+!.env.example
 data - 副本/
 *.log

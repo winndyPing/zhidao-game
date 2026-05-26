@@ -91,14 +91,14 @@ function showToast(message: string) {
 </script>
 
 <template>
-  <div class="w-full max-w-md h-[calc(100vh-32px)] bg-gb-bg border-8 border-gb-dark rounded-gameboy shadow-pixel-lg p-4 flex flex-col">
+  <div class="mx-auto flex h-[calc(100dvh-16px)] w-[calc(100vw-16px)] max-w-[430px] flex-col overflow-x-hidden rounded-[28px] border-8 border-gb-dark bg-gb-bg p-4 shadow-pixel-lg sm:h-[calc(100dvh-32px)] sm:w-full">
     <!-- 可滚动内容区域 -->
-    <div class="flex-1 overflow-y-auto">
+    <div class="min-h-0 flex-1 overflow-y-auto">
       <!-- 用户资料 -->
       <UserProfile />
       
       <!-- 头部 -->
-      <div class="flex justify-between items-center mb-4">
+      <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <button class="pixel-btn small flex items-center gap-1" @click="store.setCurrentPage('dungeon')">
           ← 返回
         </button>
@@ -109,9 +109,9 @@ function showToast(message: string) {
       </div>
 
       <!-- 状态栏 -->
-      <div class="bg-gb-dark text-gb-bg p-3 mb-4 border-4 border-gb-darker rounded">
+      <div class="bg-gb-dark text-gb-bg p-3 mb-4 border-4 border-gb-darker rounded overflow-x-hidden">
         <!-- HP和体力 -->
-        <div class="flex items-center gap-3 mb-3">
+        <div class="flex flex-col gap-2 mb-3 sm:flex-row sm:items-center sm:gap-3">
           <span class="text-lg">❤️</span>
           <div class="flex-1 h-4 bg-gb-darker rounded overflow-hidden border border-gb-light">
             <div class="h-full bg-red-500 transition-all duration-300" :style="{ width: hpPercent + '%' }" />
@@ -125,7 +125,7 @@ function showToast(message: string) {
         </div>
 
         <!-- 资源 -->
-        <div class="flex justify-between text-sm">
+        <div class="flex flex-wrap justify-between gap-2 text-sm">
           <div class="flex items-center gap-1">
             <span>💰</span>
             <span class="text-gb-gold">{{ store.player.gold }}</span>
@@ -187,22 +187,23 @@ function showToast(message: string) {
       </div>
 
       <!-- 装备属性总和 -->
-      <div class="bg-gb-light border-4 border-gb-dark p-4 mb-4">
-        <div class="flex items-center justify-between mb-3">
+      <div class="grid gap-4">
+      <div class="bg-gb-light border-4 border-gb-dark p-4 mb-4 lg:mb-0">
+        <div class="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div class="flex items-center gap-2">
             <span class="text-xl">📊</span>
             <span class="font-bold text-gb-darker">装备属性总和</span>
           </div>
           <button
             @click="showRanking = true"
-            class="px-2 py-1 bg-gb-gold text-white text-xs border-2 border-gb-darker rounded hover:brightness-110 active:translate-y-0.5"
+            class="w-full px-2 py-1 bg-gb-gold text-white text-xs border-2 border-gb-darker rounded hover:brightness-110 active:translate-y-0.5 sm:w-auto"
           >
             🏆 排行榜
           </button>
         </div>
         
         <!-- 战力显示 -->
-        <div class="bg-gb-bg border-2 border-gb-darker p-2 mb-3 flex items-center justify-between">
+        <div class="mb-3 flex flex-col gap-2 bg-gb-bg border-2 border-gb-darker p-2 sm:flex-row sm:items-center sm:justify-between">
           <span class="text-sm text-gb-dark">综合战力</span>
           <span class="text-lg font-bold text-gb-textgold">{{ calculateTotalPower(store.player, equipment) }}</span>
         </div>
@@ -224,12 +225,12 @@ function showToast(message: string) {
       </div>
 
       <!-- 装备列表 -->
-      <div class="bg-gb-light border-4 border-gb-dark p-4 mb-4">
+      <div class="bg-gb-light border-4 border-gb-dark p-4 mb-4 xl:mb-0">
         <div class="flex items-center gap-2 mb-3">
           <span class="text-xl">⚔️</span>
           <span class="font-bold text-gb-darker">装备 (点击装备/卸下)</span>
         </div>
-        <div class="grid grid-cols-4 gap-3">
+        <div class="grid grid-cols-2 gap-3">
           <div
             v-for="item in equipment"
             :key="item.id"
@@ -274,12 +275,12 @@ function showToast(message: string) {
       </div>
 
       <!-- 材料列表 -->
-      <div class="bg-gb-light border-4 border-gb-dark p-4 mb-4">
+      <div class="bg-gb-light border-4 border-gb-dark p-4 mb-4 lg:mb-0">
         <div class="flex items-center gap-2 mb-3">
           <span class="text-xl">📦</span>
           <span class="font-bold text-gb-darker">材料</span>
         </div>
-        <div class="grid grid-cols-4 gap-3">
+        <div class="grid grid-cols-2 gap-3">
           <div
             v-for="material in materials"
             :key="material.id"
@@ -290,6 +291,7 @@ function showToast(message: string) {
             <span class="text-xs font-bold text-gb-darker mt-1">×{{ material.count }}</span>
           </div>
         </div>
+      </div>
       </div>
     </div>
 

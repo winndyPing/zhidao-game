@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useGameStore } from '@/stores/gameStore';
-import { validatePhone, generateVerificationCode } from '@/utils/userUtils';
+import { generateVerificationCode, validatePhone } from '@/utils/userUtils';
 
 const store = useGameStore();
-
-// ==================== 状态 ====================
 
 const phone = ref('');
 const code = ref('');
@@ -14,30 +12,16 @@ const countdown = ref(0);
 const isLoading = ref(false);
 const errorMessage = ref('');
 
-// ==================== 计算属性 ====================
-
-const canSendCode = computed(() => {
-  return validatePhone(phone.value) && countdown.value === 0;
-});
-
-const canLogin = computed(() => {
-  return validatePhone(phone.value) && code.value.length === 6;
-});
-
-const countdownText = computed(() => {
-  return countdown.value > 0 ? `${countdown.value}s` : '获取验证码';
-});
-
-// ==================== 方法 ====================
+const canSendCode = computed(() => validatePhone(phone.value) && countdown.value === 0);
+const canLogin = computed(() => validatePhone(phone.value) && code.value.length === 6);
+const countdownText = computed(() => (countdown.value > 0 ? `${countdown.value}s` : '获取验证码'));
 
 function sendCode() {
   if (!canSendCode.value) return;
-  
-  // 生成验证码
+
   generatedCode.value = generateVerificationCode();
-  console.log('验证码:', generatedCode.value); // 实际项目中应该发送到手机
-  
-  // 开始倒计时
+  console.log('验证码:', generatedCode.value);
+
   countdown.value = 60;
   const timer = setInterval(() => {
     countdown.value--;
@@ -45,35 +29,28 @@ function sendCode() {
       clearInterval(timer);
     }
   }, 1000);
-  
-  // 显示验证码（演示用）
+
   alert(`验证码: ${generatedCode.value}`);
 }
 
 function onLogin() {
   errorMessage.value = '';
-  
+
   if (!validatePhone(phone.value)) {
     errorMessage.value = '请输入正确的手机号';
     return;
   }
-  
+
   if (code.value.length !== 6) {
-    errorMessage.value = '请输入6位验证码';
+    errorMessage.value = '请输入 6 位验证码';
     return;
   }
-  
-  // 验证验证码（实际项目中应该与服务器验证）
-  // 演示时跳过验证或检查生成的验证码
+
   if (generatedCode.value && code.value !== generatedCode.value) {
-    // 演示模式：允许任意6位数字登录
-    // errorMessage.value = '验证码错误';
-    // return;
+    // 演示模式下不强校验验证码，方便快速体验。
   }
-  
+
   isLoading.value = true;
-  
-  // 模拟登录请求
   setTimeout(() => {
     store.login(phone.value);
     isLoading.value = false;
@@ -82,98 +59,124 @@ function onLogin() {
 
 function onPhoneInput(event: Event) {
   const input = event.target as HTMLInputElement;
-  // 只允许数字
   phone.value = input.value.replace(/\D/g, '').slice(0, 11);
 }
 
 function onCodeInput(event: Event) {
   const input = event.target as HTMLInputElement;
-  // 只允许数字
   code.value = input.value.replace(/\D/g, '').slice(0, 6);
 }
 </script>
 
 <template>
-  <div class="min-h-screen bg-gb-darker flex flex-col items-center justify-center p-4">
-    <div class="w-full max-w-sm bg-gb-bg border-8 border-gb-dark rounded-gameboy shadow-pixel-lg p-6">
-      <!-- Logo -->
-      <div class="text-center mb-6">
-        <div class="text-6xl mb-2">🎮</div>
-        <h1 class="text-gb-darker font-bold text-2xl">职道</h1>
-        <p class="text-gb-dark text-sm mt-1">代码迷宫 & 装备工坊</p>
-      </div>
-      
-      <!-- 登录表单 -->
-      <div class="space-y-4">
-        <!-- 手机号输入 -->
-        <div>
-          <label class="block text-gb-darker text-sm font-bold mb-2">手机号</label>
-          <div class="flex gap-2">
+  <div class="mx-auto flex min-h-[calc(100dvh-16px)] w-[calc(100vw-16px)] max-w-[430px] items-center justify-center overflow-x-hidden sm:min-h-[calc(100dvh-32px)] sm:w-full">
+    <div class="grid w-full gap-6">
+      <div class="bg-gb-bg border-8 border-gb-dark rounded-gameboy shadow-pixel-lg p-6">
+        <div class="text-center mb-6">
+          <div class="text-6xl mb-2">🎮</div>
+          <h1 class="text-gb-darker font-bold text-2xl">职道 Demo</h1>
+          <p class="text-gb-dark text-sm mt-1">职业迷宫与装备工坊</p>
+        </div>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-gb-darker text-sm font-bold mb-2">手机号</label>
             <input
               type="tel"
               :value="phone"
               @input="onPhoneInput"
               placeholder="请输入手机号"
-              class="flex-1 bg-gb-light border-4 border-gb-darker px-3 py-2 text-gb-darker placeholder-gb-dark/50 focus:outline-none font-mono"
+              class="w-full bg-gb-light border-4 border-gb-darker px-3 py-2 text-gb-darker placeholder-gb-dark/50 focus:outline-none"
               maxlength="11"
             />
           </div>
+
+          <div>
+            <label class="block text-gb-darker text-sm font-bold mb-2">验证码</label>
+            <div class="flex flex-col gap-2 sm:flex-row">
+              <input
+                type="tel"
+                :value="code"
+                @input="onCodeInput"
+                placeholder="请输入验证码"
+                class="min-w-0 flex-1 bg-gb-light border-4 border-gb-darker px-3 py-2 text-gb-darker placeholder-gb-dark/50 focus:outline-none"
+                maxlength="6"
+              />
+              <button
+                class="pixel-btn w-full whitespace-nowrap text-xs sm:w-auto"
+                :disabled="!canSendCode"
+                :class="{ 'opacity-50 cursor-not-allowed': !canSendCode }"
+                @click="sendCode"
+              >
+                {{ countdownText }}
+              </button>
+            </div>
+          </div>
+
+          <div v-if="errorMessage" class="text-red-600 text-sm text-center">
+            {{ errorMessage }}
+          </div>
+
+          <button
+            class="pixel-btn w-full mt-4"
+            :disabled="!canLogin || isLoading"
+            :class="{ 'opacity-50 cursor-not-allowed': !canLogin || isLoading }"
+            @click="onLogin"
+          >
+            <span v-if="isLoading">登录中...</span>
+            <span v-else>进入 Demo</span>
+          </button>
         </div>
-        
-        <!-- 验证码输入 -->
-        <div>
-          <label class="block text-gb-darker text-sm font-bold mb-2">验证码</label>
-          <div class="flex gap-2">
-            <input
-              type="tel"
-              :value="code"
-              @input="onCodeInput"
-              placeholder="请输入验证码"
-              class="flex-1 bg-gb-light border-4 border-gb-darker px-3 py-2 text-gb-darker placeholder-gb-dark/50 focus:outline-none font-mono"
-              maxlength="6"
-            />
-            <button
-              class="pixel-btn whitespace-nowrap text-xs"
-              :disabled="!canSendCode"
-              :class="{ 'opacity-50 cursor-not-allowed': !canSendCode }"
-              @click="sendCode"
-            >
-              {{ countdownText }}
-            </button>
+
+        <div class="mt-6 text-center text-xs text-gb-dark">
+          <p>演示模式：任意手机号 + 6 位数字即可登录</p>
+          <p class="mt-1">登录后会自动生成昵称和头像</p>
+        </div>
+      </div>
+
+      <div class="bg-gb-bg/95 border-8 border-gb-dark rounded-gameboy shadow-pixel-lg p-6">
+        <div class="flex items-start gap-3 text-gb-darker">
+          <span class="text-3xl">🧭</span>
+          <div>
+            <div class="text-xs uppercase tracking-[0.18em] text-gb-dark">试玩说明</div>
+            <h2 class="text-2xl font-bold mt-1">这不是重度游戏，而是职业内容互动化 Demo</h2>
           </div>
         </div>
-        
-        <!-- 错误信息 -->
-        <div v-if="errorMessage" class="text-red-600 text-sm text-center">
-          {{ errorMessage }}
+
+        <div class="mt-6 grid gap-4">
+          <div class="bg-gb-light border-4 border-gb-darker p-4">
+            <div class="text-2xl mb-2">1</div>
+            <div class="font-bold text-gb-darker">选择方向</div>
+            <p class="mt-2 text-sm leading-6 text-gb-dark">
+              从职业方向里选一条更适合自己的路线，建立起步认知。
+            </p>
+          </div>
+          <div class="bg-gb-light border-4 border-gb-darker p-4">
+            <div class="text-2xl mb-2">2</div>
+            <div class="font-bold text-gb-darker">进入迷宫</div>
+            <p class="mt-2 text-sm leading-6 text-gb-dark">
+              在学习、战斗、奖励事件中推进成长，感受内容与互动结合。
+            </p>
+          </div>
+          <div class="bg-gb-light border-4 border-gb-darker p-4">
+            <div class="text-2xl mb-2">3</div>
+            <div class="font-bold text-gb-darker">围绕项目、简历、面试组织输出</div>
+            <p class="mt-2 text-sm leading-6 text-gb-dark">
+              整个反馈链路不是只升级数值，而是强化“成长可感知”。
+            </p>
+          </div>
         </div>
-        
-        <!-- 登录按钮 -->
-        <button
-          class="pixel-btn w-full mt-4"
-          :disabled="!canLogin || isLoading"
-          :class="{ 'opacity-50 cursor-not-allowed': !canLogin || isLoading }"
-          @click="onLogin"
-        >
-          <span v-if="isLoading">登录中...</span>
-          <span v-else>登录</span>
-        </button>
+
+        <div class="mt-6 bg-gb-light border-4 border-gb-darker p-4">
+          <div class="font-bold text-gb-darker">这版 Demo 适合验证什么</div>
+          <div class="mt-3 grid gap-3 sm:grid-cols-2">
+            <div class="text-sm leading-6 text-gb-dark">职业方向入口不再只是文章列表，而是可选择、可反馈的互动路径。</div>
+            <div class="text-sm leading-6 text-gb-dark">学习、战斗、装备三套机制能把成长过程变成更容易停留的体验。</div>
+            <div class="text-sm leading-6 text-gb-dark">后续可以继续扩成课程页、活动页、招生页或广告变现型内容站。</div>
+            <div class="text-sm leading-6 text-gb-dark">当前重点是让用户快速理解结构，而不是做复杂规则系统。</div>
+          </div>
+        </div>
       </div>
-      
-      <!-- 演示提示 -->
-      <div class="mt-6 text-center text-xs text-gb-dark">
-        <p>💡 演示模式：任意手机号 + 6位数字即可登录</p>
-        <p class="mt-1">登录后将自动生成头像和昵称</p>
-      </div>
-    </div>
-    
-    <!-- 底部装饰 -->
-    <div class="mt-8 flex gap-4 text-2xl opacity-50">
-      <span>⚔️</span>
-      <span>🛡️</span>
-      <span>💎</span>
-      <span>🐛</span>
-      <span>👾</span>
     </div>
   </div>
 </template>

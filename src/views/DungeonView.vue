@@ -171,16 +171,16 @@ function getSkillName(skillId: string): string {
 </script>
 
 <template>
-  <div class="w-full max-w-md h-[calc(100vh-32px)] bg-gb-bg border-8 border-gb-dark rounded-gameboy shadow-pixel-lg p-4 flex flex-col">
+  <div class="mx-auto flex h-[calc(100dvh-16px)] w-[calc(100vw-16px)] max-w-[430px] flex-col overflow-x-hidden rounded-[28px] border-8 border-gb-dark bg-gb-bg p-4 shadow-pixel-lg sm:h-[calc(100dvh-32px)] sm:w-full">
     <!-- 可滚动内容区域 -->
-    <div class="flex-1 overflow-y-auto">
+    <div class="min-h-0 flex-1 overflow-y-auto">
       <!-- 用户资料 -->
       <UserProfile />
       
       <!-- 头部 -->
-      <div class="flex justify-between items-center mb-4">
+      <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div class="text-gb-darker font-bold text-lg">🏰 迷宫</div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <span class="text-sm">第{{ store.dungeon.currentFloor }}层</span>
           <button class="pixel-btn small" @click="store.setCurrentPage('craft')">
             ⚒️ 工坊
@@ -192,23 +192,26 @@ function getSkillName(skillId: string): string {
       <StatusBar />
 
       <!-- 迷宫地图 -->
-      <DungeonMap :rooms="rooms" @enter="onEnterRoom" />
+      <div class="grid gap-4">
+        <DungeonMap :rooms="rooms" @enter="onEnterRoom" />
+
+        <div class="space-y-4">
 
       <!-- 当前房间信息 -->
       <div class="pixel-dialog">
         <span class="font-bold block mb-2">📍 当前位置</span>
         <div v-if="currentRoom">
-          <span class="text-sm">
+          <span class="text-sm leading-6">
             {{ currentRoom.event.name }}
             <span v-if="currentRoom.unlockStatus === 'learning'" class="text-gb-dark">（学习中）</span>
             <span v-else-if="currentRoom.unlockStatus === 'cleared'" class="text-green-600">（已通关）</span>
           </span>
           <!-- 优先显示用户选择的技能 -->
-          <div v-if="currentRoom.linkedSkillId" class="text-xs text-gb-textgold mt-1">
+          <div v-if="currentRoom.linkedSkillId" class="mt-1 text-xs leading-5 text-gb-textgold">
             📚 学习技能: {{ getSkillName(currentRoom.linkedSkillId) }}
           </div>
           <!-- 如果没有选择，显示房间推荐的技能 -->
-          <div v-else-if="currentRoom.event.skillHint" class="text-xs text-gb-dark mt-1">
+          <div v-else-if="currentRoom.event.skillHint" class="mt-1 text-xs leading-5 text-gb-dark">
             💡 推荐技能: {{ getSkillName(currentRoom.event.skillHint) }}
           </div>
         </div>
@@ -216,13 +219,18 @@ function getSkillName(skillId: string): string {
       </div>
 
       <!-- 材料快捷显示 -->
-      <div class="flex flex-wrap gap-2 my-2">
-        <MaterialBadge
-          v-for="material in store.inventory.materials"
-          :key="material.id"
-          :icon="material.icon"
-          :count="material.count"
-        />
+          <div class="pixel-dialog">
+            <span class="mb-2 block font-bold">材料速览</span>
+            <div class="flex flex-wrap gap-2">
+              <MaterialBadge
+                v-for="material in store.inventory.materials"
+                :key="material.id"
+                :icon="material.icon"
+                :count="material.count"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     

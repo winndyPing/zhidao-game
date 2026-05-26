@@ -18,7 +18,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        'pixel': ['Zpix', 'monospace'],
+        'pixel': ['"Courier New"', '"Microsoft YaHei"', '"PingFang SC"', 'monospace'],
       },
       boxShadow: {
         'pixel': '-2px -2px 0 0 #0f380f, 2px 2px 0 0 #9bbc0f, inset -1px -1px 0 0 #0f380f, inset 1px 1px 0 0 #9bbc0f',

@@ -590,14 +590,14 @@ const handleWatchAd = async () => {
 </script>
 
 <template>
-  <div class="w-full max-w-md h-[calc(100vh-32px)] bg-gb-bg border-8 border-gb-dark rounded-gameboy shadow-pixel-lg p-4 flex flex-col">
+  <div class="mx-auto flex h-[calc(100dvh-16px)] w-[calc(100vw-16px)] max-w-[430px] flex-col overflow-x-hidden rounded-[28px] border-8 border-gb-dark bg-gb-bg p-4 shadow-pixel-lg sm:h-[calc(100dvh-32px)] sm:w-full">
     <!-- 可滚动内容区域 -->
-    <div class="flex-1 overflow-y-auto">
+    <div class="min-h-0 flex-1 overflow-y-auto">
       <!-- 用户资料 -->
       <UserProfile />
       
       <!-- 头部 -->
-      <div class="flex justify-between items-center mb-4">
+      <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <button class="pixel-btn small" @click="store.setCurrentPage('dungeon')">
           ← 返回
         </button>
@@ -624,16 +624,16 @@ const handleWatchAd = async () => {
 
       <!-- CP兑换商店 -->
       <div class="pixel-dialog">
-        <div class="flex justify-between items-center mb-3">
+        <div class="mb-3 flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
           <span class="font-bold">💰 CP兑换商店 ({{ store.player.cp }}CP)</span>
           <button
             @click="openAdDialog"
-            class="px-2 py-1 bg-gb-gold text-white text-xs border-2 border-gb-darker rounded hover:brightness-110 active:translate-y-0.5"
+            class="w-full px-2 py-1 bg-gb-gold text-white text-xs border-2 border-gb-darker rounded hover:brightness-110 active:translate-y-0.5 lg:w-auto"
           >
             📺 看广告得CP
           </button>
         </div>
-        <div class="grid grid-cols-4 gap-2">
+        <div class="grid grid-cols-2 gap-2">
           <div
             v-for="item in exchangeItems"
             :key="item.id"
@@ -652,11 +652,11 @@ const handleWatchAd = async () => {
       <!-- 合成配方 -->
       <div class="pixel-dialog">
         <span class="font-bold block mb-3">📜 合成配方</span>
-        <div class="flex gap-3 overflow-x-auto pb-2">
+        <div class="grid grid-cols-2 gap-3">
           <div
             v-for="recipe in recipes"
             :key="recipe.id"
-            class="bg-gb-light border-4 border-gb-dark p-3 cursor-pointer transition-all relative flex-shrink-0 w-28"
+            class="relative min-w-0 bg-gb-light border-4 border-gb-dark p-3 cursor-pointer transition-all"
             :class="{
               'hover:bg-gb-bg hover:border-gb-gold': recipe.unlocked
             }"
@@ -692,9 +692,9 @@ const handleWatchAd = async () => {
       <!-- 已装备 -->
       <div class="pixel-dialog">
         <span class="font-bold block mb-2">🎒 装备栏</span>
-        <div class="flex gap-2 overflow-x-auto pb-2 bg-gb-dark p-3 border-4 border-gb-darker">
+        <div class="grid grid-cols-3 gap-2 bg-gb-dark p-3 border-4 border-gb-darker sm:grid-cols-6">
           <div
-            class="equip-slot relative flex-shrink-0 w-16"
+            class="equip-slot relative min-w-0"
             :class="{ 'opacity-50': ironSwordStatus.count === 0 }"
           >
             <span class="text-2xl text-center block">{{ ironSwordStatus.icon }}</span>
@@ -706,7 +706,7 @@ const handleWatchAd = async () => {
             </span>
           </div>
           <div
-            class="equip-slot relative flex-shrink-0 w-16"
+            class="equip-slot relative min-w-0"
             :class="{ 'opacity-50': crystalArmorStatus.count === 0 }"
           >
             <span class="text-2xl text-center block">{{ crystalArmorStatus.icon }}</span>
@@ -718,7 +718,7 @@ const handleWatchAd = async () => {
             </span>
           </div>
           <div
-            class="equip-slot relative flex-shrink-0 w-16"
+            class="equip-slot relative min-w-0"
             :class="{ 'opacity-50': bugBootsStatus.count === 0 }"
           >
             <span class="text-2xl text-center block">{{ bugBootsStatus.icon }}</span>
@@ -730,7 +730,7 @@ const handleWatchAd = async () => {
             </span>
           </div>
           <div
-            class="equip-slot relative flex-shrink-0 w-16"
+            class="equip-slot relative min-w-0"
             :class="{ 'opacity-50': legendarySwordStatus.count === 0 }"
           >
             <span class="text-2xl text-center block">{{ legendarySwordStatus.icon }}</span>
@@ -742,7 +742,7 @@ const handleWatchAd = async () => {
             </span>
           </div>
           <div
-            class="equip-slot relative flex-shrink-0 w-16"
+            class="equip-slot relative min-w-0"
             :class="{ 'opacity-50': ironHelmetStatus.count === 0 }"
           >
             <span class="text-2xl text-center block">{{ ironHelmetStatus.icon }}</span>
@@ -754,7 +754,7 @@ const handleWatchAd = async () => {
             </span>
           </div>
           <div
-            class="equip-slot relative flex-shrink-0 w-16"
+            class="equip-slot relative min-w-0"
             :class="{ 'opacity-50': ironBracerStatus.count === 0 }"
           >
             <span class="text-2xl text-center block">{{ ironBracerStatus.icon }}</span>
@@ -773,7 +773,7 @@ const handleWatchAd = async () => {
         <!-- 顶部装饰条 -->
         <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 via-gb-gold to-purple-500"></div>
         
-        <div class="flex items-center justify-between mb-2">
+        <div class="mb-2 flex items-center justify-between gap-3">
           <span class="font-bold text-gb-darker">💼 装备强化</span>
         </div>
         
@@ -797,10 +797,10 @@ const handleWatchAd = async () => {
           <div
             v-for="equip in unequippedEquipment"
             :key="equip.id"
-            class="bg-gb-light border-2 border-gb-darker p-2 flex items-center justify-between relative"
+            class="relative flex flex-col gap-3 bg-gb-light border-2 border-gb-darker p-2 sm:flex-row sm:items-center sm:justify-between"
             :class="{ 'border-gb-gold bg-gb-gold/10': (equip.enhanceLevel || 0) >= 8 }"
           >
-            <div class="flex items-center gap-2">
+            <div class="flex min-w-0 items-center gap-2">
               <div class="relative">
                 <span class="text-xl">{{ equip.icon }}</span>
                 <!-- 技能熟练度光环 -->
@@ -808,7 +808,7 @@ const handleWatchAd = async () => {
                 <!-- 高等级职场精英标记 - 放在图标右上角 -->
                 <div v-if="(equip.enhanceLevel || 0) >= 8" class="absolute -top-2 -right-2 text-xs animate-bounce">👔</div>
               </div>
-              <div>
+              <div class="min-w-0">
                 <div class="text-sm font-bold">{{ equip.name }}</div>
                 <div class="text-xs">
                   <span class="text-gb-dark">{{ getSkillLevelName(equip.enhanceLevel || 0) }}</span>
@@ -818,7 +818,7 @@ const handleWatchAd = async () => {
               </div>
             </div>
             <button
-              class="pixel-btn small text-xs relative overflow-hidden"
+              class="pixel-btn small relative w-full overflow-hidden text-xs sm:w-auto"
               :class="{ 
                 'opacity-50': (equip.enhanceLevel || 0) >= 10,
                 'bg-gradient-to-r from-gb-gold/30 to-green-400/30': (equip.enhanceLevel || 0) < 10
@@ -851,17 +851,17 @@ const handleWatchAd = async () => {
           <div
             v-for="equip in decomposableEquipment"
             :key="equip.id"
-            class="bg-gb-light border-2 border-gb-darker p-2 flex items-center justify-between"
+            class="flex flex-col gap-3 bg-gb-light border-2 border-gb-darker p-2 sm:flex-row sm:items-center sm:justify-between"
           >
-            <div class="flex items-center gap-2">
+            <div class="flex min-w-0 items-center gap-2">
               <span class="text-xl">{{ equip.icon }}</span>
-              <div>
+              <div class="min-w-0">
                 <div class="text-sm font-bold">{{ equip.name }}</div>
                 <div class="text-xs text-gb-dark">+{{ equip.enhanceLevel || 0 }}</div>
               </div>
             </div>
             <button
-              class="pixel-btn small text-xs"
+              class="pixel-btn small w-full text-xs sm:w-auto"
               @click="openDecomposeConfirm(equip)"
             >
               分解
@@ -881,13 +881,13 @@ const handleWatchAd = async () => {
   <!-- 合成确认弹窗 -->
   <div v-if="showConfirm" class="fixed inset-0 z-50">
     <div class="absolute inset-0 bg-black/70" />
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 animate-pop-in">
+    <div class="absolute top-1/2 left-1/2 w-[calc(100vw-24px)] max-w-72 -translate-x-1/2 -translate-y-1/2 animate-pop-in">
       <div class="bg-gb-bg border-8 border-gb-darker p-5 text-center">
         <span class="text-gb-darker font-bold text-lg block mb-2">合成 {{ selectedRecipe?.name }}?</span>
         <span class="text-gb-darker text-sm block mb-4">
           消耗材料: {{ selectedRecipe?.materials.map(m => `${getMaterialIcon(m.id)} x${m.count}`).join(' ') }}
         </span>
-        <div class="flex gap-3">
+        <div class="flex flex-col gap-3 sm:flex-row">
           <button class="pixel-btn flex-1" @click="confirmCraft">确认</button>
           <button class="pixel-btn flex-1" @click="cancelCraft">取消</button>
         </div>
@@ -898,7 +898,7 @@ const handleWatchAd = async () => {
   <!-- 配方解锁弹窗 -->
   <div v-if="showUnlockDialog" class="fixed inset-0 z-50">
     <div class="absolute inset-0 bg-black/70" />
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 animate-pop-in">
+    <div class="absolute top-1/2 left-1/2 w-[calc(100vw-24px)] max-w-80 -translate-x-1/2 -translate-y-1/2 animate-pop-in">
       <div class="bg-gb-bg border-8 border-gb-darker p-5 text-center">
         <div class="text-4xl mb-2">🔒</div>
         <span class="text-gb-darker font-bold text-lg block mb-2">解锁配方: {{ selectedUnlockRecipe?.name }}</span>
@@ -943,7 +943,7 @@ const handleWatchAd = async () => {
   <!-- 兑换确认弹窗 -->
   <div v-if="showExchangeConfirm" class="fixed inset-0 z-50">
     <div class="absolute inset-0 bg-black/70" />
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 animate-pop-in">
+    <div class="absolute top-1/2 left-1/2 w-[calc(100vw-24px)] max-w-72 -translate-x-1/2 -translate-y-1/2 animate-pop-in">
       <div class="bg-gb-bg border-8 border-gb-darker p-5 text-center">
         <span class="text-gb-darker font-bold text-lg block mb-2">💰 兑换 {{ selectedExchangeItem?.name }}?</span>
         <div class="text-gb-darker text-sm block mb-2">
@@ -953,7 +953,7 @@ const handleWatchAd = async () => {
           消耗 <span class="text-gb-textgold font-bold">{{ selectedExchangeItem?.price }} CP</span>
           获得 <span class="font-bold">{{ selectedExchangeItem?.icon }} ×{{ selectedExchangeItem?.count }}</span>
         </span>
-        <div class="flex gap-3">
+        <div class="flex flex-col gap-3 sm:flex-row">
           <button class="pixel-btn flex-1" @click="confirmExchange">确认</button>
           <button class="pixel-btn flex-1" @click="cancelExchange">取消</button>
         </div>
@@ -964,7 +964,7 @@ const handleWatchAd = async () => {
   <!-- 技能进修答题弹窗 -->
   <div v-if="showEnhanceQuiz" class="fixed inset-0 z-50">
     <div class="absolute inset-0 bg-black/80" />
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 max-w-[90%]">
+    <div class="absolute top-1/2 left-1/2 w-[calc(100vw-24px)] max-w-80 -translate-x-1/2 -translate-y-1/2">
       <div class="bg-gb-bg border-8 border-gb-darker p-4 relative overflow-hidden">
         <!-- 强化成功动效层 -->
         <div v-if="showQuizResult && quizCorrect" class="absolute inset-0 pointer-events-none z-20">
@@ -978,7 +978,7 @@ const handleWatchAd = async () => {
         </div>
 
         <!-- 标题 -->
-        <div class="flex justify-between items-center mb-3">
+        <div class="mb-3 flex items-start justify-between gap-3">
           <div>
             <h3 class="text-gb-darker font-bold text-lg">
               🎓 技能进修
@@ -1013,7 +1013,7 @@ const handleWatchAd = async () => {
 
         <!-- 答题区域 -->
         <div v-if="currentQuiz" class="bg-gb-light border-4 border-gb-darker p-3 mb-3">
-          <div class="flex items-center gap-2 mb-3">
+          <div class="mb-3 flex flex-wrap items-center gap-2">
             <span class="text-lg">📚</span>
             <span class="font-bold text-gb-darker text-sm">技能考核</span>
             <span class="text-xs text-gb-dark bg-green-100 text-green-700 px-2 py-0.5 rounded">答对=技能提升</span>
@@ -1058,7 +1058,7 @@ const handleWatchAd = async () => {
           </div>
 
           <!-- 操作按钮 -->
-          <div class="flex gap-3 mt-3">
+          <div class="mt-3 flex flex-col gap-3 sm:flex-row">
             <button
               v-if="!showQuizResult"
               class="pixel-btn flex-1"
@@ -1093,7 +1093,7 @@ const handleWatchAd = async () => {
   <!-- 分解确认弹窗 -->
   <div v-if="showDecomposeConfirm" class="fixed inset-0 z-50">
     <div class="absolute inset-0 bg-black/70" />
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 animate-pop-in">
+    <div class="absolute top-1/2 left-1/2 w-[calc(100vw-24px)] max-w-72 -translate-x-1/2 -translate-y-1/2 animate-pop-in">
       <div class="bg-gb-bg border-8 border-gb-darker p-5 text-center">
         <span class="text-gb-darker font-bold text-lg block mb-2">♻️ 分解 {{ selectedDecomposeEquip?.name }}</span>
         <div class="text-gb-darker text-sm block mb-2">
@@ -1104,7 +1104,7 @@ const handleWatchAd = async () => {
           <div>预计返还:</div>
           <div class="text-gb-textgold">{{ decomposeReturnText }}</div>
         </div>
-        <div class="flex gap-3">
+        <div class="flex flex-col gap-3 sm:flex-row">
           <button class="pixel-btn flex-1" @click="confirmDecompose">确认</button>
           <button class="pixel-btn flex-1" @click="cancelDecompose">取消</button>
         </div>
@@ -1115,7 +1115,7 @@ const handleWatchAd = async () => {
   <!-- 看广告得CP弹窗 -->
   <div v-if="showAdDialog" class="fixed inset-0 z-50">
     <div class="absolute inset-0 bg-black/70" />
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 animate-pop-in">
+    <div class="absolute top-1/2 left-1/2 w-[calc(100vw-24px)] max-w-72 -translate-x-1/2 -translate-y-1/2 animate-pop-in">
       <div class="bg-gb-bg border-8 border-gb-darker p-5 text-center">
         <span class="text-gb-darker font-bold text-lg block mb-3">📺 观看广告获得奖励</span>
         
@@ -1129,7 +1129,7 @@ const handleWatchAd = async () => {
           今日剩余: <span class="font-bold text-gb-darker">{{ remainingAdCount }}/10</span> 次
         </div>
         
-        <div class="flex gap-3">
+        <div class="flex flex-col gap-3 sm:flex-row">
           <button
             class="pixel-btn flex-1"
             :class="{ 'opacity-50': adLoading || remainingAdCount <= 0 }"
