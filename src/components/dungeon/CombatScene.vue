@@ -37,7 +37,7 @@ const currentResource = ref<{ skillId: string; skillName: string; resource: Lear
 const currentSkill = ref<SkillRecommendation | null>(null);
 
 // 总题数
-const totalQuestions = 1;
+const totalQuestions = 3;
 
 // 当前题目
 const currentQuestion = computed(() => {
@@ -176,16 +176,16 @@ function loadLearningResource() {
   // 没有选择职业方向，使用通用资源
   if (!career) {
     currentResource.value = {
-      skillId: 'python',
-      skillName: 'Python基础',
+      skillId: 'programming_basics',
+      skillName: '编程基础',
       resource: {
-        skillId: 'python',
-        title: 'Python基础语法',
-        description: 'Python编程入门',
+        skillId: 'programming_basics',
+        title: '编程基础引导',
+        description: '先补齐语法、流程控制与函数这些通用能力',
         difficulty: 'beginner',
         resources: [
-          { type: 'doc', title: 'Python教程', url: 'https://www.runoob.com/python3/python3-tutorial.html', description: '菜鸟教程' },
-          { type: 'practice', title: 'LeetCode', url: 'https://leetcode.cn/', description: '在线练习' },
+          { type: 'doc', title: 'Python 官方教程', url: 'https://docs.python.org/zh-cn/3/tutorial/', description: '从基础语法开始建立编程直觉' },
+          { type: 'practice', title: 'LeetCode', url: 'https://leetcode.cn/', description: '通过小题目训练基本功' },
         ]
       }
     };
@@ -282,7 +282,7 @@ function finishQuiz() {
   }
   
   // 方案C：配方通过宝箱掉落，答题不再解锁配方
-  emit('win', `🎉 答题完成！正确率 ${accuracy.value}%，获得 ${totalCP} CP${materialMsg}！`);
+  emit('win', `🎉 挑战完成！正确率 ${accuracy.value}%，获得 ${totalCP} CP${materialMsg}！`);
   resetState();
 }
 
@@ -295,7 +295,7 @@ function onFlee() {
   }
   
   store.updatePlayerStamina(-10);
-  emit('flee', '🏃 放弃学习任务！消耗 10 体力');
+  emit('flee', '🏃 先返回整理思路，消耗 10 点体力');
   resetState();
 }
 
@@ -416,11 +416,18 @@ function openResource(url: string) {
             </div>
           </div>
         </div>
+
+        <div
+          v-else-if="currentResource && !showQuiz"
+          class="bg-gb-light border-4 border-gb-darker p-3 mb-3 text-xs text-gb-dark leading-5"
+        >
+          当前技能还没有补充资源，可以直接进入知识挑战继续推进。
+        </div>
         
         <!-- 答题前的开始按钮 -->
         <div v-if="!showQuiz" class="bg-gb-light border-4 border-gb-darker p-4 mb-3 text-center">
           <div class="text-3xl mb-2">📝</div>
-          <p class="text-gb-darker font-bold mb-2">答题挑战</p>
+          <p class="text-gb-darker font-bold mb-2">知识挑战</p>
           <p class="text-gb-dark text-xs mb-3">共 {{ totalQuestions }} 道选择题，根据正确率获得奖励</p>
           <button class="pixel-btn w-full" @click="startQuiz">
             开始答题
@@ -432,7 +439,7 @@ function openResource(url: string) {
           <!-- 进度条 -->
           <div class="flex items-center justify-between mb-2">
             <span class="text-gb-dark text-xs">第 {{ currentQuestionIndex + 1 }} / {{ quizQuestions.length }} 题</span>
-            <span class="text-gb-dark text-xs">正确: {{ correctCount }}</span>
+            <span class="text-gb-dark text-xs">答对: {{ correctCount }}</span>
           </div>
           
           <!-- 进度条 -->
@@ -522,7 +529,7 @@ function openResource(url: string) {
         
         <!-- 提示 -->
         <div v-if="!showQuiz" class="mt-3 text-center text-xs text-gb-dark">
-          <p>💡 建议先学习资源后再答题</p>
+          <p>💡 先看资源再答题，通常能拿到更高奖励。</p>
         </div>
       </div>
     </div>

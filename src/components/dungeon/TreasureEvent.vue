@@ -41,7 +41,7 @@ function onCollect() {
           <p class="text-gb-darker text-sm">{{ rewardMessage }}</p>
         </div>
 
-        <button class="pixel-btn w-full" @click="onCollect">收下</button>
+        <button class="pixel-btn w-full" @click="onCollect">收下奖励</button>
       </div>
     </div>
   </div>

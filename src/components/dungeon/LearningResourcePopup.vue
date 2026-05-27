@@ -67,17 +67,17 @@ function loadLearningResource() {
   
   // 没有职业方向或没有技能提示，使用默认
   currentLearning.value = {
-    skillId: 'python',
-    skillName: 'Python基础',
-    skillIcon: '🐍',
+    skillId: 'programming_basics',
+    skillName: '编程基础',
+    skillIcon: '📘',
     resource: {
-      skillId: 'python',
-      title: 'Python基础语法',
-      description: 'Python编程入门',
+      skillId: 'programming_basics',
+      title: '编程基础引导',
+      description: '先补齐语法、流程控制与函数这些通用能力',
       difficulty: 'beginner',
       resources: [
-        { type: 'doc', title: 'Python教程', url: 'https://www.runoob.com/python3/python3-tutorial.html', description: '菜鸟教程' },
-        { type: 'practice', title: 'LeetCode', url: 'https://leetcode.cn/', description: '在线练习' },
+        { type: 'doc', title: 'Python 官方教程', url: 'https://docs.python.org/zh-cn/3/tutorial/', description: '从基础语法开始建立编程直觉' },
+        { type: 'practice', title: 'LeetCode', url: 'https://leetcode.cn/', description: '通过小题目训练基本功' },
       ]
     }
   };
@@ -167,12 +167,18 @@ function onClose() {
               <span class="text-gb-dark text-sm">→</span>
             </div>
           </div>
+          <p
+            v-if="currentLearning?.resource.resources.length === 0"
+            class="text-gb-dark text-xs leading-5"
+          >
+            当前技能暂时还没有额外资源，先进入挑战也可以继续推进。
+          </p>
         </div>
 
         <!-- 挑战说明 -->
         <div class="bg-gb-darker text-gb-bg p-3 mb-4 text-xs">
-          <p>💡 学习完成后，点击下方按钮进入挑战任务</p>
-          <p class="mt-1">完成任务可获得奖励！</p>
+          <p>💡 先快速浏览资源，再进入挑战任务会更稳。</p>
+          <p class="mt-1">完成挑战后可以拿到 CP 和探索奖励。</p>
         </div>
 
         <!-- 操作按钮 -->
@@ -181,7 +187,7 @@ function onClose() {
             开始挑战
           </button>
           <button class="pixel-btn flex-1" @click="onClose">
-            稍后再说
+            先去准备
           </button>
         </div>
       </div>

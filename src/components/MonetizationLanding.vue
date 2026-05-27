@@ -137,34 +137,34 @@ const fallbackArticles = computed(() =>
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#f6f1e7] text-[#1f2418]">
-    <section class="overflow-hidden border-b border-[#d8cdb8] bg-[radial-gradient(circle_at_top_left,_rgba(232,122,65,0.18),_transparent_34%),linear-gradient(180deg,_#f7f2e8_0%,_#efe5d4_100%)]">
-      <div class="mx-auto grid max-w-7xl gap-12 px-4 py-10 sm:px-6 lg:grid-cols-[minmax(0,1.2fr)_380px] lg:px-8 lg:py-16 xl:gap-16 xl:py-20">
+  <div class="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(155,188,15,0.12),_transparent_35%),linear-gradient(180deg,_#0f380f_0%,_#0b2b0b_100%)] text-gb-darker">
+    <section class="overflow-hidden border-b-4 border-[#23321c] bg-[linear-gradient(180deg,_rgba(155,188,15,0.14)_0%,_rgba(15,56,15,0)_100%)]">
+      <div class="mx-auto grid max-w-7xl gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1.15fr)_360px] lg:px-8 lg:py-12 xl:gap-8">
         <div>
-          <div class="inline-flex rounded-full border border-[#bfa37a] bg-[#fff8ef] px-4 py-2 text-[11px] uppercase tracking-[0.24em] text-[#8a5127]">
+          <div class="inline-flex border-4 border-gb-dark bg-gb-light px-3 py-1 text-[11px] font-bold uppercase tracking-[0.24em] text-gb-darker shadow-[4px_4px_0_#0f380f]">
             职业方向导航
           </div>
-          <h1 class="mt-5 max-w-4xl text-4xl font-black leading-tight text-[#1d2216] sm:text-5xl lg:text-[64px] lg:leading-[1.04]">
+          <h1 class="mt-5 max-w-4xl text-4xl font-black leading-tight text-[#f7ffd4] sm:text-5xl lg:text-[60px] lg:leading-[1.04]">
             不是先刷内容，
             <br />
             而是先判断你现在该走哪条路。
           </h1>
-          <p class="mt-6 max-w-3xl text-base leading-8 text-[#534a3c] sm:text-lg lg:text-[19px] lg:leading-9">
-            这里不讲空话，也不让你在一堆相似卡片里自己猜。先选你现在的状态，再给你更合适的方向、文章和试玩入口。
+          <p class="mt-6 max-w-3xl text-base leading-8 text-[#dbe7ac] sm:text-lg lg:text-[19px] lg:leading-9">
+            这里不讲空话，也不让你在一堆相似卡片里自己猜。先选你现在的状态，再给你更合适的方向、文章和体验入口。
           </p>
 
           <div class="mt-9 flex flex-wrap gap-3 lg:gap-4">
             <button
-              class="rounded-full bg-[#1f2418] px-6 py-3 text-sm font-semibold text-[#f8f3ea] transition hover:bg-[#11150d] lg:px-7 lg:py-3.5"
+              class="pixel-btn !m-0 !px-6 !py-3 text-sm sm:text-base"
               @click="emit('openArticle', featuredArticle.id)"
             >
               从推荐文章开始
             </button>
             <button
-              class="rounded-full border border-[#1f2418] px-6 py-3 text-sm font-semibold text-[#1f2418] transition hover:bg-[#1f2418] hover:text-[#f8f3ea] lg:px-7 lg:py-3.5"
+              class="border-4 border-gb-dark bg-[#306230] px-6 py-3 text-sm font-bold text-[#f7ffd4] shadow-[4px_4px_0_#0f380f] transition hover:bg-[#3a733a] lg:px-7 lg:py-3.5"
               @click="emit('enterDemo')"
             >
-              直接试玩职业 Demo
+              直接进入职业体验
             </button>
           </div>
 
@@ -172,26 +172,26 @@ const fallbackArticles = computed(() =>
             <span
               v-for="intent in activePersona.searchIntents"
               :key="intent"
-              class="rounded-full border border-[#d2c0a3] bg-[#fff9f1] px-4 py-2 text-sm text-[#6a5a44] lg:px-5 lg:py-2.5"
+              class="border-2 border-gb-dark bg-[#1b3a14] px-4 py-2 text-sm text-[#d5ff66] lg:px-5 lg:py-2.5"
             >
               {{ intent }}
             </span>
           </div>
         </div>
 
-        <div class="rounded-[30px] border border-[#d6c19b] bg-[#fffaf2] p-6 shadow-[0_24px_60px_rgba(52,37,18,0.08)] sm:p-8 lg:self-center">
-          <div class="text-sm font-semibold uppercase tracking-[0.18em] text-[#9d6334]">
+        <div class="border-8 border-[#23321c] bg-[#9bbc0f] p-6 shadow-[10px_10px_0_#0f380f] sm:p-8 lg:self-center">
+          <div class="text-sm font-bold uppercase tracking-[0.18em] text-gb-darker">
             先选你是谁
           </div>
           <div class="mt-5 space-y-3">
             <button
               v-for="persona in personas"
               :key="persona.key"
-              class="w-full rounded-[22px] border px-5 py-5 text-left transition lg:px-6 lg:py-6"
+              class="w-full border-4 px-5 py-5 text-left transition lg:px-6 lg:py-6"
               :class="
                 persona.key === selectedPersona
-                  ? 'border-[#1f2418] bg-[#1f2418] text-[#f6f1e7] shadow-[0_14px_28px_rgba(25,29,19,0.18)]'
-                  : 'border-[#dbc8a9] bg-[#fff6ea] text-[#1f2418] hover:border-[#9d6334] hover:bg-[#fffaf2]'
+                  ? 'border-gb-dark bg-[#306230] text-[#f7ffd4] shadow-[4px_4px_0_#17380f]'
+                  : 'border-gb-dark bg-gb-light text-gb-darker hover:bg-[#b7d31c]'
               "
               @click="selectedPersona = persona.key"
             >
@@ -210,10 +210,10 @@ const fallbackArticles = computed(() =>
       </div>
     </section>
 
-    <main class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 xl:py-16">
+    <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10 xl:py-12">
       <section class="grid gap-6 xl:grid-cols-[340px_minmax(0,1fr)] xl:gap-8">
-        <div class="rounded-[28px] bg-[#20261a] p-7 text-[#f3eddc] shadow-[0_18px_40px_rgba(16,16,10,0.18)] sm:p-8 xl:sticky xl:top-6 xl:h-fit">
-          <div class="text-xs uppercase tracking-[0.24em] text-[#efc38b]">
+        <div class="border-4 border-gb-dark bg-[#1a3414] p-7 text-[#f3eddc] shadow-[8px_8px_0_#0f380f] sm:p-8 xl:sticky xl:top-6 xl:h-fit">
+          <div class="text-xs uppercase tracking-[0.24em] text-[#d5ff66]">
             当前建议
           </div>
           <h2 class="mt-4 text-3xl font-black leading-tight">
@@ -223,9 +223,9 @@ const fallbackArticles = computed(() =>
             <div
               v-for="(step, index) in activePersona.steps"
               :key="step"
-              class="flex items-start gap-4 rounded-[20px] border border-[#49503f] bg-[#2a3123] px-4 py-4"
+              class="flex items-start gap-4 border-4 border-[#284c17] bg-[#2c5d28] px-4 py-4"
             >
-              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#efc38b] text-sm font-black text-[#20261a]">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-gb-dark bg-[#d4af37] text-sm font-black text-[#20261a]">
                 {{ index + 1 }}
               </div>
               <p class="pt-1 text-sm leading-7 text-[#f3eddc]">
@@ -235,24 +235,24 @@ const fallbackArticles = computed(() =>
           </div>
         </div>
 
-        <div class="rounded-[28px] border border-[#ddd0b7] bg-[#fffaf3] p-5 shadow-[0_20px_45px_rgba(48,36,20,0.06)] sm:p-8 xl:p-9">
+        <div class="border-8 border-[#23321c] bg-[#9bbc0f] p-5 shadow-[10px_10px_0_#0f380f] sm:p-8 xl:p-9">
           <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between xl:gap-8">
             <div>
-              <div class="text-xs uppercase tracking-[0.22em] text-[#9d6334]">
+              <div class="text-xs uppercase tracking-[0.22em] text-gb-darker">
                 职业方向
               </div>
-              <h2 class="mt-2 max-w-[12ch] text-[30px] font-black leading-[1.15] text-[#1f2418] sm:max-w-none sm:text-2xl xl:max-w-none xl:text-[34px] xl:leading-[1.1]">
+              <h2 class="mt-2 max-w-[12ch] text-[30px] font-black leading-[1.15] text-gb-darker sm:max-w-none sm:text-2xl xl:max-w-none xl:text-[34px] xl:leading-[1.1]">
                 先看这 3 个方向入口
               </h2>
-              <p class="mt-3 max-w-2xl text-sm leading-7 text-[#61533f] xl:text-[15px]">
+              <p class="mt-3 max-w-2xl text-sm leading-7 text-[#29461f] xl:text-[15px]">
                 基于你当前状态筛出来的优先选项，先点进去看差异，再决定往哪条路投入时间。
               </p>
             </div>
             <button
-              class="self-start rounded-full border border-[#1f2418] px-4 py-2 text-sm font-semibold text-[#1f2418] transition hover:bg-[#1f2418] hover:text-[#fffaf3] sm:self-auto xl:px-5 xl:py-2.5"
+              class="pixel-btn !m-0 self-start !px-4 !py-2 text-sm sm:self-auto xl:!px-5 xl:!py-2.5"
               @click="emit('enterDemo')"
             >
-              先去试玩
+              先去体验
             </button>
           </div>
 
@@ -260,21 +260,21 @@ const fallbackArticles = computed(() =>
             <button
               v-for="(direction, index) in activePersona.directions"
               :key="direction.title"
-              class="grid w-full gap-3 rounded-[24px] border border-[#ded0b2] bg-[#fff4e6] px-5 py-5 text-left transition hover:border-[#9d6334] hover:bg-[#fff9f2] sm:grid-cols-[72px_1fr_auto] sm:gap-4 xl:h-full xl:grid-cols-1 xl:grid-rows-[auto_auto_1fr_auto] xl:gap-5 xl:px-6 xl:py-6"
+              class="grid w-full gap-3 border-4 border-gb-dark bg-gb-light px-5 py-5 text-left transition hover:bg-[#b7d31c] sm:grid-cols-[72px_1fr_auto] sm:gap-4 xl:h-full xl:grid-cols-1 xl:grid-rows-[auto_auto_1fr_auto] xl:gap-5 xl:px-6 xl:py-6"
               @click="emit('openArticle', direction.articleId)"
             >
-              <div class="text-[36px] font-black leading-none text-[#b77c42] sm:text-[40px] xl:text-[44px]">
+              <div class="text-[36px] font-black leading-none text-[#306230] sm:text-[40px] xl:text-[44px]">
                 0{{ index + 1 }}
               </div>
               <div>
-                <div class="text-[28px] font-black leading-none text-[#1f2418] sm:text-xl sm:leading-snug xl:text-[26px]">
+                <div class="text-[28px] font-black leading-none text-gb-darker sm:text-xl sm:leading-snug xl:text-[26px]">
                   {{ direction.title }}
                 </div>
-                <p class="mt-3 text-sm leading-7 text-[#61533f]">
+                <p class="mt-3 text-sm leading-7 text-[#29461f]">
                   {{ direction.summary }}
                 </p>
               </div>
-              <div class="self-center pt-1 text-sm font-semibold text-[#8a5127] xl:self-end">
+              <div class="self-center pt-1 text-sm font-semibold text-[#306230] xl:self-end">
                 看这条路 →
               </div>
             </button>
@@ -284,52 +284,52 @@ const fallbackArticles = computed(() =>
 
       <section class="mt-10 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] xl:gap-8">
         <button
-          class="overflow-hidden rounded-[30px] bg-[linear-gradient(135deg,_#8a5127_0%,_#d68d4a_100%)] p-0 text-left text-[#fff8ee] shadow-[0_22px_50px_rgba(138,81,39,0.22)] transition hover:translate-y-[-2px] xl:min-h-[420px]"
+          class="overflow-hidden border-8 border-[#23321c] bg-[linear-gradient(180deg,_#9bbc0f_0%,_#7d9d09_100%)] p-0 text-left text-gb-darker shadow-[10px_10px_0_#0f380f] transition hover:translate-y-[-2px] xl:min-h-[420px]"
           @click="emit('openArticle', featuredArticle.id)"
         >
           <div class="p-7 sm:p-8 xl:flex xl:h-full xl:flex-col xl:justify-between xl:p-10">
             <div>
-            <div class="text-xs uppercase tracking-[0.22em] text-[#ffe2b9]">
+            <div class="text-xs uppercase tracking-[0.22em] text-[#306230]">
               推荐先读
             </div>
-            <h2 class="mt-4 max-w-2xl text-3xl font-black leading-tight xl:text-[42px] xl:leading-[1.08]">
+            <h2 class="mt-4 max-w-2xl text-3xl font-black leading-tight text-gb-darker xl:text-[42px] xl:leading-[1.08]">
               {{ featuredArticle.title }}
             </h2>
-            <p class="mt-4 max-w-2xl text-sm leading-7 text-[#fff2df] sm:text-base xl:mt-5 xl:max-w-3xl xl:text-[17px] xl:leading-8">
+            <p class="mt-4 max-w-2xl text-sm leading-7 text-[#29461f] sm:text-base xl:mt-5 xl:max-w-3xl xl:text-[17px] xl:leading-8">
               {{ featuredArticle.excerpt }}
             </p>
             </div>
-            <div class="mt-8 flex flex-wrap items-center gap-3 text-sm text-[#fff2df]">
-              <span class="rounded-full border border-[#ffd9ab]/60 px-3 py-1">
+            <div class="mt-8 flex flex-wrap items-center gap-3 text-sm text-[#29461f]">
+              <span class="border-2 border-gb-dark bg-gb-light px-3 py-1">
                 {{ featuredArticle.category }}
               </span>
               <span>{{ featuredArticle.readTime }}</span>
             </div>
           </div>
-          <div class="border-t border-white/20 bg-black/10 px-7 py-4 text-sm font-semibold sm:px-8">
+          <div class="border-t-4 border-[#23321c] bg-[#b7d31c] px-7 py-4 text-sm font-semibold sm:px-8">
             进入详情页阅读 →
           </div>
         </button>
 
-        <div class="rounded-[30px] border border-[#ddd0b7] bg-[#fffaf3] p-6 shadow-[0_18px_40px_rgba(48,36,20,0.06)] sm:p-7 xl:p-8">
-          <div class="text-xs uppercase tracking-[0.22em] text-[#9d6334]">
+        <div class="border-8 border-[#23321c] bg-[#9bbc0f] p-6 shadow-[10px_10px_0_#0f380f] sm:p-7 xl:p-8">
+          <div class="text-xs uppercase tracking-[0.22em] text-gb-darker">
             学习文章
           </div>
           <div class="mt-5 space-y-3 xl:space-y-4">
             <button
               v-for="article in supportingArticles"
               :key="article.id"
-              class="w-full rounded-[22px] border border-[#e4d8c3] bg-[#fff6ea] px-5 py-4 text-left transition hover:border-[#b77c42] hover:bg-[#fffaf3] xl:px-6 xl:py-5"
+              class="w-full border-4 border-gb-dark bg-gb-light px-5 py-4 text-left transition hover:bg-[#b7d31c] xl:px-6 xl:py-5"
               @click="emit('openArticle', article.id)"
             >
-              <div class="flex items-center justify-between gap-3 text-xs uppercase tracking-[0.16em] text-[#8a5127]">
+              <div class="flex items-center justify-between gap-3 text-xs uppercase tracking-[0.16em] text-[#306230]">
                 <span>{{ article.category }}</span>
                 <span>{{ article.readTime }}</span>
               </div>
-              <div class="mt-3 text-lg font-black leading-snug text-[#1f2418]">
+              <div class="mt-3 text-lg font-black leading-snug text-gb-darker">
                 {{ article.title }}
               </div>
-              <p class="mt-2 text-sm leading-7 text-[#61533f]">
+              <p class="mt-2 text-sm leading-7 text-[#29461f]">
                 {{ article.excerpt }}
               </p>
             </button>
@@ -337,21 +337,21 @@ const fallbackArticles = computed(() =>
         </div>
       </section>
 
-      <section class="mt-10 rounded-[32px] border border-[#d8cdb8] bg-[#fbf7ef] p-6 shadow-[0_16px_35px_rgba(48,36,20,0.05)] sm:p-8 xl:p-9">
+      <section class="mt-10 border-8 border-[#23321c] bg-[#9bbc0f] p-6 shadow-[10px_10px_0_#0f380f] sm:p-8 xl:p-9">
         <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <div class="text-xs uppercase tracking-[0.22em] text-[#9d6334]">
+            <div class="text-xs uppercase tracking-[0.22em] text-gb-darker">
               继续往下看
             </div>
-            <h2 class="mt-2 text-2xl font-black text-[#1f2418]">
+            <h2 class="mt-2 text-2xl font-black text-gb-darker">
               如果你还没决定，先从这些高频问题开始
             </h2>
           </div>
           <button
-            class="rounded-full bg-[#1f2418] px-5 py-3 text-sm font-semibold text-[#f8f3ea] transition hover:bg-[#11150d]"
+            class="pixel-btn !m-0 !px-5 !py-3 text-sm"
             @click="emit('enterDemo')"
           >
-            不想读文章，直接试玩
+            不想读文章，直接体验
           </button>
         </div>
 
@@ -359,16 +359,16 @@ const fallbackArticles = computed(() =>
           <button
             v-for="article in fallbackArticles"
             :key="article.id"
-            class="rounded-[24px] border border-[#e4d8c3] bg-white px-5 py-5 text-left transition hover:border-[#b77c42] hover:bg-[#fffaf3] xl:px-6 xl:py-6"
+            class="border-4 border-gb-dark bg-gb-light px-5 py-5 text-left transition hover:bg-[#b7d31c] xl:px-6 xl:py-6"
             @click="emit('openArticle', article.id)"
           >
-            <div class="text-xs uppercase tracking-[0.18em] text-[#8a5127]">
+            <div class="text-xs uppercase tracking-[0.18em] text-[#306230]">
               {{ article.category }}
             </div>
-            <div class="mt-3 text-lg font-black leading-snug text-[#1f2418]">
+            <div class="mt-3 text-lg font-black leading-snug text-gb-darker">
               {{ article.title }}
             </div>
-            <p class="mt-2 text-sm leading-7 text-[#61533f]">
+            <p class="mt-2 text-sm leading-7 text-[#29461f]">
               {{ article.excerpt }}
             </p>
           </button>

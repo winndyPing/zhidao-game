@@ -61,11 +61,11 @@ const staminaPercent = computed(() => {
 function onEquipClick(item: Equipment) {
   if (item.equipped) {
     store.unequipItem(item.id);
-    showToast(`📦 卸下 ${item.name}`);
+    showToast(`📦 已卸下 ${item.name}`);
   } else {
     const success = store.equipItem(item.id);
     if (success) {
-      showToast(`✅ 装备 ${item.name}`);
+      showToast(`✅ 已装备 ${item.name}`);
     }
   }
 }
@@ -91,7 +91,7 @@ function showToast(message: string) {
 </script>
 
 <template>
-  <div class="mx-auto flex h-[calc(100dvh-16px)] w-[calc(100vw-16px)] max-w-[430px] flex-col overflow-x-hidden rounded-[28px] border-8 border-gb-dark bg-gb-bg p-4 shadow-pixel-lg sm:h-[calc(100dvh-32px)] sm:w-full">
+  <div class="mx-auto flex h-full min-h-0 w-full max-w-[430px] flex-col overflow-x-hidden rounded-[28px] border-8 border-gb-dark bg-gb-bg p-4 shadow-pixel-lg md:w-full">
     <!-- 可滚动内容区域 -->
     <div class="min-h-0 flex-1 overflow-y-auto">
       <!-- 用户资料 -->
@@ -100,11 +100,11 @@ function showToast(message: string) {
       <!-- 头部 -->
       <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <button class="pixel-btn small flex items-center gap-1" @click="store.setCurrentPage('dungeon')">
-          ← 返回
+          ← 返回迷宫
         </button>
         <div class="text-gb-darker font-bold text-lg flex items-center gap-2">
           <span>🎒</span>
-          <span>背包</span>
+          <span>成长背包</span>
         </div>
       </div>
 
@@ -192,7 +192,7 @@ function showToast(message: string) {
         <div class="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div class="flex items-center gap-2">
             <span class="text-xl">📊</span>
-            <span class="font-bold text-gb-darker">装备属性总和</span>
+            <span class="font-bold text-gb-darker">当前成长加成</span>
           </div>
           <button
             @click="showRanking = true"
@@ -204,7 +204,7 @@ function showToast(message: string) {
         
         <!-- 战力显示 -->
         <div class="mb-3 flex flex-col gap-2 bg-gb-bg border-2 border-gb-darker p-2 sm:flex-row sm:items-center sm:justify-between">
-          <span class="text-sm text-gb-dark">综合战力</span>
+          <span class="text-sm text-gb-dark">当前综合战力</span>
           <span class="text-lg font-bold text-gb-textgold">{{ calculateTotalPower(store.player, equipment) }}</span>
         </div>
         
@@ -228,8 +228,9 @@ function showToast(message: string) {
       <div class="bg-gb-light border-4 border-gb-dark p-4 mb-4 xl:mb-0">
         <div class="flex items-center gap-2 mb-3">
           <span class="text-xl">⚔️</span>
-          <span class="font-bold text-gb-darker">装备 (点击装备/卸下)</span>
+          <span class="font-bold text-gb-darker">已获得装备</span>
         </div>
+        <p class="text-gb-dark text-xs mb-3">点击卡片即可装备或卸下，把当前战斗风格调整到合适状态。</p>
         <div class="grid grid-cols-2 gap-3">
           <div
             v-for="item in equipment"
@@ -278,8 +279,9 @@ function showToast(message: string) {
       <div class="bg-gb-light border-4 border-gb-dark p-4 mb-4 lg:mb-0">
         <div class="flex items-center gap-2 mb-3">
           <span class="text-xl">📦</span>
-          <span class="font-bold text-gb-darker">材料</span>
+          <span class="font-bold text-gb-darker">项目材料</span>
         </div>
+        <p class="text-gb-dark text-xs mb-3">迷宫奖励和工坊制作都会消耗这些材料，记得按目标保留库存。</p>
         <div class="grid grid-cols-2 gap-3">
           <div
             v-for="material in materials"

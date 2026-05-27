@@ -40,7 +40,7 @@ function onFlee() {
         <h3 class="text-gb-darker font-bold text-lg mb-2">{{ room.event.name }}</h3>
         <p class="text-gb-darker text-sm mb-2">{{ room.event.desc }}</p>
         <p class="text-gb-dark text-xs mb-4">
-          完成学习任务获取奖励，或跳过继续探索
+          完成学习任务可以获得奖励，也可以先跳过继续探索
         </p>
 
         <!-- 奖励预览 -->
@@ -52,7 +52,7 @@ function onFlee() {
 
         <div class="flex gap-3 justify-center">
           <button class="pixel-btn flex-1" @click="onFight">开始学习</button>
-          <button class="pixel-btn flex-1" @click="onFlee">跳过</button>
+          <button class="pixel-btn flex-1" @click="onFlee">先跳过</button>
         </div>
       </div>
     </div>

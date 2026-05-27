@@ -15,7 +15,8 @@ export interface QuizQuestion {
 // ==================== 用户类型 ====================
 
 export interface UserInfo {
-  phone: string;
+  email: string;
+  phone?: string;
   nickname: string;
   avatar: string;
   isLoggedIn: boolean;

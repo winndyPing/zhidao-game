@@ -171,7 +171,7 @@ function getSkillName(skillId: string): string {
 </script>
 
 <template>
-  <div class="mx-auto flex h-[calc(100dvh-16px)] w-[calc(100vw-16px)] max-w-[430px] flex-col overflow-x-hidden rounded-[28px] border-8 border-gb-dark bg-gb-bg p-4 shadow-pixel-lg sm:h-[calc(100dvh-32px)] sm:w-full">
+  <div class="mx-auto flex h-full min-h-0 w-full max-w-[430px] flex-col overflow-x-hidden rounded-[28px] border-8 border-gb-dark bg-gb-bg p-4 shadow-pixel-lg md:w-full">
     <!-- 可滚动内容区域 -->
     <div class="min-h-0 flex-1 overflow-y-auto">
       <!-- 用户资料 -->

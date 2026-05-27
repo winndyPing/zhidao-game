@@ -39,23 +39,23 @@ function confirmSelection() {
 const categoryNameMap: Record<string, string> = {
   frontend: '前端方向',
   backend: '后端方向',
-  mobile: '移动端',
+  mobile: '移动端方向',
   data: '数据方向',
   ai: 'AI 方向',
-  devops: '运维方向',
-  game: '游戏开发',
-  other: '其他方向',
+  devops: '工程效能方向',
+  game: '游戏开发方向',
+  other: '综合方向',
 };
 </script>
 
 <template>
-  <div class="mx-auto w-[calc(100vw-16px)] max-w-[430px] overflow-x-hidden sm:w-full">
-    <div class="flex min-h-[calc(100dvh-16px)] w-full flex-col bg-gb-bg border-8 border-gb-dark rounded-gameboy shadow-pixel-lg p-4 sm:min-h-[calc(100dvh-32px)] sm:p-6">
+  <div class="mx-auto h-full min-h-0 w-full max-w-[430px] overflow-x-hidden">
+    <div class="flex h-full min-h-0 w-full flex-col border-8 border-gb-dark bg-gb-bg p-4 shadow-pixel-lg rounded-gameboy sm:p-6">
       <template v-if="!showDetail">
         <div class="text-center mb-4 flex-shrink-0 lg:mb-6">
           <div class="text-4xl mb-2">🧭</div>
-          <h1 class="text-gb-darker font-bold text-xl">选择你的职业方向</h1>
-          <p class="text-gb-dark text-xs mt-2">根据兴趣或岗位目标选择，拿到更贴近自己的学习路线</p>
+          <h1 class="text-gb-darker font-bold text-xl">选择你的成长方向</h1>
+          <p class="text-gb-dark text-xs mt-2">根据兴趣或目标岗位选择路线，先把更值得投入的技能链路定下来</p>
         </div>
 
         <div class="flex-1 overflow-y-auto space-y-4 pr-1">
@@ -81,7 +81,7 @@ const categoryNameMap: Record<string, string> = {
 
         <div class="mt-4 text-center flex-shrink-0">
           <button class="text-gb-dark text-xs underline" @click="store.skipCareerSelection()">
-            暂不选择，稍后再说 →
+            先随便看看，稍后再定 →
           </button>
         </div>
       </template>
@@ -103,8 +103,8 @@ const categoryNameMap: Record<string, string> = {
               <div class="bg-gb-light border-4 border-gb-darker p-3">
                 <div class="flex items-center gap-2 mb-2">
                   <span class="text-lg">🎯</span>
-                  <span class="text-gb-darker font-bold text-sm">核心技能</span>
-                  <span class="text-gb-dark text-xs">（必须掌握）</span>
+                  <span class="text-gb-darker font-bold text-sm">优先补齐</span>
+                  <span class="text-gb-dark text-xs">（当前阶段先打牢）</span>
                 </div>
                 <div class="space-y-2">
                   <div
@@ -124,8 +124,8 @@ const categoryNameMap: Record<string, string> = {
               <div class="bg-gb-light border-4 border-gb-darker p-3">
                 <div class="flex items-center gap-2 mb-2">
                   <span class="text-lg">⭐</span>
-                  <span class="text-gb-darker font-bold text-sm">重要技能</span>
-                  <span class="text-gb-dark text-xs">（提升竞争力）</span>
+                  <span class="text-gb-darker font-bold text-sm">进阶加分项</span>
+                  <span class="text-gb-dark text-xs">（让竞争力更完整）</span>
                 </div>
                 <div class="space-y-2">
                   <div
@@ -146,7 +146,7 @@ const categoryNameMap: Record<string, string> = {
         </div>
 
         <button class="pixel-btn w-full mt-4 flex-shrink-0" @click="confirmSelection">
-          确认选择这个方向
+          以这个方向开始成长
         </button>
       </template>
     </div>

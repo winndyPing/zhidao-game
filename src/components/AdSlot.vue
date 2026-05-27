@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
+import { computed, nextTick, onMounted, ref } from 'vue';
+import { resolveAdRuntime } from '@/services/adProvider';
 
 declare global {
   interface Window {
@@ -18,55 +19,92 @@ interface Props {
 
 const { slot, title, description, variant = 'banner' } = defineProps<Props>();
 
-const adClient = import.meta.env.VITE_ADSENSE_CLIENT as string | undefined;
-const isLive = computed(() => Boolean(adClient));
 const root = ref<HTMLElement | null>(null);
-const statusText = computed(() => (isLive.value ? '广告位已启用' : '广告位占位中'));
+const customMountPoint = ref<HTMLElement | null>(null);
+const runtime = computed(() => resolveAdRuntime(slot));
+const isLive = computed(() => runtime.value.isLive);
+const statusText = computed(() => runtime.value.statusText);
+const providerLabel = computed(() => runtime.value.providerLabel);
 
-function ensureAdsenseScript() {
-  if (!adClient || typeof document === 'undefined') return;
+function ensureScript(scriptSrc: string) {
+  if (typeof document === 'undefined') return;
   if (document.querySelector('script[data-adsense-loader="true"]')) return;
 
   const script = document.createElement('script');
   script.async = true;
-  script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adClient}`;
+  script.src = scriptSrc;
   script.crossOrigin = 'anonymous';
   script.dataset.adsenseLoader = 'true';
   document.head.appendChild(script);
 }
 
+function mountCustomHtml(html: string) {
+  if (!customMountPoint.value) return;
+
+  customMountPoint.value.innerHTML = html;
+
+  const scripts = Array.from(customMountPoint.value.querySelectorAll('script'));
+  scripts.forEach((oldScript) => {
+    const newScript = document.createElement('script');
+
+    Array.from(oldScript.attributes).forEach((attr) => {
+      newScript.setAttribute(attr.name, attr.value);
+    });
+
+    if (oldScript.src) {
+      newScript.src = oldScript.src;
+      newScript.async = oldScript.async;
+    } else {
+      newScript.textContent = oldScript.textContent;
+    }
+
+    oldScript.parentNode?.replaceChild(newScript, oldScript);
+  });
+}
+
 onMounted(() => {
-  ensureAdsenseScript();
+  if (runtime.value.renderMode === 'adsense' && runtime.value.scriptSrc) {
+    ensureScript(runtime.value.scriptSrc);
+  }
 
   if (!isLive.value || !root.value) {
     return;
   }
 
-  const ins = root.value.querySelector('ins');
-  if (!ins) {
+  if (runtime.value.renderMode === 'adsense') {
+    const ins = root.value.querySelector('ins');
+    if (!ins) {
+      return;
+    }
+
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.push({});
     return;
   }
 
-  window.adsbygoogle = window.adsbygoogle || [];
-  window.adsbygoogle.push({});
+  if (runtime.value.renderMode === 'custom-html' && runtime.value.customHtml) {
+    nextTick(() => {
+      mountCustomHtml(runtime.value.customHtml!);
+    });
+  }
 });
 </script>
 
 <template>
   <div
     ref="root"
-    class="rounded-[24px] border-2 border-dashed border-[#597942] bg-[#0c1a0c]/80 p-4 text-[#dce8ab]"
+    class="border-4 border-dashed border-[#597942] bg-[#0c1a0c]/90 p-4 text-[#dce8ab] shadow-[6px_6px_0_#0f380f]"
   >
     <div class="flex items-center justify-between gap-3">
       <div>
-        <div class="text-[11px] uppercase tracking-[0.25em] text-[#9bbc0f]">
+        <div class="text-[11px] font-bold uppercase tracking-[0.25em] text-[#9bbc0f]">
           {{ variant }} ad slot
         </div>
         <div class="mt-2 text-lg font-bold text-[#f7ffd4]">
           {{ title }}
         </div>
       </div>
-      <div class="rounded-full border border-[#6d904c] px-3 py-1 text-[11px] text-[#d5ff66]">
+      <div class="border-2 border-[#6d904c] bg-[#132013] px-3 py-1 text-[11px] font-bold text-[#d5ff66]">
         {{ statusText }}
       </div>
     </div>
@@ -75,20 +113,39 @@ onMounted(() => {
       {{ description }}
     </p>
 
-    <div v-if="isLive" class="mt-4 overflow-hidden rounded-[18px] bg-[#132013] p-3">
+    <div class="mt-3 text-xs uppercase tracking-[0.18em] text-[#8bac0f]">
+      {{ providerLabel }}
+    </div>
+
+    <p class="mt-2 text-xs leading-6 text-[#9eb574]">
+      {{ runtime.descriptionText }}
+    </p>
+
+    <div
+      v-if="runtime.renderMode === 'adsense'"
+      class="mt-4 overflow-hidden border-2 border-[#355626] bg-[#132013] p-3"
+    >
       <ins
         class="adsbygoogle block min-h-[96px] w-full"
         style="display:block"
         data-ad-format="auto"
         data-full-width-responsive="true"
-        :data-ad-client="adClient"
+        :data-ad-client="runtime.adsenseClient"
         :data-ad-slot="slot"
       />
     </div>
 
     <div
+      v-else-if="runtime.renderMode === 'custom-html'"
+      ref="customMountPoint"
+      class="mt-4 overflow-hidden border-2 border-[#355626] bg-[#132013] p-3"
+      :style="{ minHeight: `${runtime.minHeight}px` }"
+    />
+
+    <div
       v-else
-      class="mt-4 flex min-h-[96px] items-center justify-center rounded-[18px] border-2 border-[#355626] bg-[linear-gradient(135deg,_rgba(155,188,15,0.12),_rgba(48,98,48,0.08))] px-4 text-center text-sm leading-6 text-[#dce8ab]"
+      class="mt-4 flex items-center justify-center border-2 border-[#355626] bg-[linear-gradient(180deg,_rgba(155,188,15,0.18),_rgba(48,98,48,0.12))] px-4 text-center text-sm leading-6 text-[#dce8ab]"
+      :style="{ minHeight: `${runtime.minHeight}px` }"
     >
       后续接入广告平台后，这里会直接替换成真实广告代码。
     </div>

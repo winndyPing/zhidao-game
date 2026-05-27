@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useGameStore } from '@/stores/gameStore';
-import { maskPhone } from '@/utils/userUtils';
+import { maskEmail } from '@/utils/userUtils';
 
 const store = useGameStore();
 
@@ -77,7 +77,7 @@ function cancelLogout() {
       </div>
 
       <div class="text-xs text-gb-dark">
-        {{ maskPhone(store.user.phone) }}
+        {{ maskEmail(store.user.email) }}
       </div>
     </div>
 

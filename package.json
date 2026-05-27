@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "server": "node server/index.mjs",
+    "migrate:supabase": "node server/migrate-json-to-supabase.mjs",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "career:validate": "python scripts/scraper.py --validate-only",
@@ -12,8 +14,9 @@
     "career:generate:titles": "python scripts/scraper.py --fetch-titles"
   },
   "dependencies": {
-    "vue": "^3.4.21",
-    "pinia": "^2.1.7"
+    "pinia": "^2.1.7",
+    "postgres": "^3.4.9",
+    "vue": "^3.4.21"
   },
   "devDependencies": {
     "@types/node": "^20.11.30",
@@ -26,4 +29,3 @@
     "vue-tsc": "^2.0.7"
   }
 }
-

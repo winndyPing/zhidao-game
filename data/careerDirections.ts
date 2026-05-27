@@ -7,13 +7,13 @@ export const careerDirections: CareerDirection[] = [
         name: '前端开发',
         icon: '🎨',
         category: 'frontend',
-        description: '构建用户界面，打造优秀的用户体验',
+        description: '围绕页面、交互与工程化，交付可维护的 Web 体验',
         skills: [
             {
                 id: 'html_css',
                 name: 'HTML/CSS',
                 icon: '📄',
-                description: '网页结构与样式基础',
+                description: '语义化结构、样式系统与响应式布局',
                 priority: 'core',
                 quizs: [
                     {
@@ -284,7 +284,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'javascript',
                 name: 'JavaScript',
                 icon: '⚡',
-                description: '前端交互逻辑核心',
+                description: '浏览器交互、异步逻辑与前端编程基础',
                 priority: 'core',
                 quizs: [
                     {
@@ -555,7 +555,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'typescript',
                 name: 'TypeScript',
                 icon: '📘',
-                description: '类型安全的JavaScript超集',
+                description: '为大型前端项目提供类型约束与可维护性',
                 priority: 'core',
                 quizs: [
                     {
@@ -824,9 +824,9 @@ export const careerDirections: CareerDirection[] = [
             },
             {
                 id: 'vue',
-                name: 'Vue.js',
+                name: 'Vue 3',
                 icon: '💚',
-                description: '渐进式JavaScript框架',
+                description: '组件化开发与组合式 API 实践',
                 priority: 'core',
                 quizs: [
                     {
@@ -1097,7 +1097,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'react',
                 name: 'React',
                 icon: '⚛️',
-                description: '声明式UI库',
+                description: '组件驱动 UI 与状态管理实践',
                 priority: 'important',
                 quizs: [
                     {
@@ -1366,9 +1366,9 @@ export const careerDirections: CareerDirection[] = [
             },
             {
                 id: 'css_framework',
-                name: 'CSS框架',
+                name: 'CSS 框架',
                 icon: '🎭',
-                description: 'Tailwind/UnoCSS等原子化CSS',
+                description: 'Tailwind、UnoCSS 等原子化样式方案',
                 priority: 'important',
                 quizs: [
                     {
@@ -1637,9 +1637,9 @@ export const careerDirections: CareerDirection[] = [
             },
             {
                 id: 'build_tools',
-                name: '构建工具',
+                name: '前端工程化',
                 icon: '📦',
-                description: 'Vite/Webpack模块打包',
+                description: 'Vite、包管理、构建与开发流程',
                 priority: 'important',
                 quizs: [
                     {
@@ -1910,7 +1910,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'git',
                 name: 'Git',
                 icon: '🔀',
-                description: '版本控制必备技能',
+                description: '版本控制、分支协作与代码回滚基础',
                 priority: 'core',
                 quizs: [
                     {
@@ -2184,13 +2184,13 @@ export const careerDirections: CareerDirection[] = [
         name: '后端开发',
         icon: '⚙️',
         category: 'backend',
-        description: '构建服务器端逻辑，处理数据与业务',
+        description: '负责接口、数据与业务系统，让服务稳定可扩展',
         skills: [
             {
                 id: 'java',
                 name: 'Java',
                 icon: '☕',
-                description: '企业级开发首选语言',
+                description: '企业级后端开发与面向对象基础',
                 priority: 'core',
                 quizs: [
                     // ---- 基础语法与第一个程序 ----
@@ -2468,7 +2468,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'python',
                 name: 'Python',
                 icon: '🐍',
-                description: '简洁优雅的通用语言',
+                description: '脚本、接口与服务开发的通用语言',
                 priority: 'core',
                 quizs: [
                     // ---- 基础语法与第一个程序 ----
@@ -2742,7 +2742,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'nodejs',
                 name: 'Node.js',
                 icon: '🟢',
-                description: 'JavaScript运行时环境',
+                description: 'JavaScript 服务端运行时与接口开发',
                 priority: 'important',
                 quizs: [
                     // ---- Node.js 基础概念 ----
@@ -3119,9 +3119,9 @@ export const careerDirections: CareerDirection[] = [
             },
             {
                 id: 'database',
-                name: '数据库',
+                name: '数据库设计',
                 icon: '🗄️',
-                description: 'MySQL/PostgreSQL/MongoDB',
+                description: '关系型数据库建模、查询与事务基础',
                 priority: 'core',
                 quizs: [
                     // ---- SQL 基础 ----
@@ -3447,7 +3447,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'redis',
                 name: 'Redis',
                 icon: '🔴',
-                description: '高性能缓存数据库',
+                description: '缓存设计与高频数据读写优化',
                 priority: 'important',
                 quizs: [
                     // ---- Redis 基础概念 ----
@@ -3761,7 +3761,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'api_design',
                 name: 'API设计',
                 icon: '📡',
-                description: 'RESTful/GraphQL接口设计',
+                description: 'RESTful / GraphQL 接口建模与规范',
                 priority: 'core',
                 quizs: [
                     // ---- RESTful 基础 ----
@@ -4070,7 +4070,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'spring',
                 name: 'Spring',
                 icon: '🍃',
-                description: 'Java企业级框架',
+                description: 'Java 后端主流框架与工程实践',
                 priority: 'important',
                 quizs: [
                     // ---- Spring 基础 ----
@@ -4371,7 +4371,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'docker',
                 name: 'Docker',
                 icon: '🐳',
-                description: '容器化部署',
+                description: '本地开发到部署的容器化基础',
                 priority: 'important',
                 quizs: [
                     // ---- Docker 基础概念 ----
@@ -4698,13 +4698,13 @@ export const careerDirections: CareerDirection[] = [
         name: '移动开发',
         icon: '📱',
         category: 'mobile',
-        description: '开发iOS/Android跨平台应用',
+        description: '面向 iOS、Android 与跨端框架交付移动应用',
         skills: [
             {
                 id: 'dart',
                 name: 'Dart',
                 icon: '🎯',
-                description: 'Flutter开发语言',
+                description: 'Flutter 核心语言与异步编程基础',
                 priority: 'core',
                 quizs: [
                     // ---- Dart 基础概念 ----
@@ -4999,7 +4999,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'flutter',
                 name: 'Flutter',
                 icon: '🦋',
-                description: '跨平台UI框架',
+                description: '跨平台界面开发与状态管理',
                 priority: 'core',
                 quizs: [
                     // ---- Flutter 基础概念 ----
@@ -5315,7 +5315,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'swift',
                 name: 'Swift',
                 icon: '🍎',
-                description: 'iOS原生开发',
+                description: 'iOS 原生应用与 SwiftUI 基础',
                 priority: 'important',
                 quizs: [
                     // ---- Swift 基础概念 ----
@@ -5590,7 +5590,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'kotlin',
                 name: 'Kotlin',
                 icon: '🤖',
-                description: 'Android官方语言',
+                description: 'Android 原生开发与现代语法实践',
                 priority: 'important',
                 quizs: [
                     // ---- Kotlin 基础概念 ----
@@ -5927,7 +5927,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'react_native',
                 name: 'React Native',
                 icon: '📱',
-                description: 'React跨平台方案',
+                description: '基于 React 的跨端移动开发',
                 priority: 'important',
                 quizs: [
                     // ---- React Native 基础概念 ----
@@ -6196,7 +6196,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'uniapp',
                 name: 'UniApp',
                 icon: '🦄',
-                description: '小程序跨平台框架',
+                description: '面向小程序与多端发布的跨端方案',
                 priority: 'important',
                 quizs: [
                     // ---- UniApp 基础概念 ----
@@ -6483,9 +6483,9 @@ export const careerDirections: CareerDirection[] = [
             },
             {
                 id: 'ui_design',
-                name: '移动端UI',
+                name: '移动端 UI 设计',
                 icon: '🎨',
-                description: '移动端界面设计规范',
+                description: '界面规范、组件层级与交互体验',
                 priority: 'core',
                 quizs: [
                     // ---- 设计基础 ----
@@ -6835,13 +6835,13 @@ export const careerDirections: CareerDirection[] = [
         name: '数据分析',
         icon: '📊',
         category: 'data',
-        description: '数据挖掘、分析与可视化',
+        description: '围绕数据清洗、分析、可视化输出业务洞察',
         skills: [
             {
                 id: 'python_data',
-                name: 'Python',
+                name: 'Python 数据分析',
                 icon: '🐍',
-                description: '数据分析首选语言',
+                description: '数据分析工作流中的脚本与基础库',
                 priority: 'core',
                 quizs: [
                     // ---- Python 数据分析基础 ----
@@ -7194,7 +7194,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'sql',
                 name: 'SQL',
                 icon: '🗃️',
-                description: '数据查询必备技能',
+                description: '查询、聚合与数据分析必备语言',
                 priority: 'core',
                 quizs: [
                     // ---- SQL 基础概念 ----
@@ -7480,7 +7480,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'pandas',
                 name: 'Pandas',
                 icon: '🐼',
-                description: 'Python数据处理库',
+                description: 'DataFrame 清洗、加工与分析',
                 priority: 'core',
                 quizs: [
                     // ---- Pandas 基础概念 ----
@@ -7736,7 +7736,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'visualization',
                 name: '数据可视化',
                 icon: '📈',
-                description: 'Matplotlib/ECharts等',
+                description: '用图表讲清指标、趋势与结论',
                 priority: 'core',
                 quizs: [
                     // ---- 可视化基础 ----
@@ -7976,7 +7976,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'excel',
                 name: 'Excel',
                 icon: '📑',
-                description: '电子表格数据处理',
+                description: '表格分析、函数与透视表基础',
                 priority: 'important',
                 quizs: [
                     // ---- Excel 基础概念 ----
@@ -8237,7 +8237,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'statistics',
                 name: '统计学',
                 icon: '📐',
-                description: '数据分析理论基础',
+                description: '概率统计与分析结论的理论基础',
                 priority: 'important',
                 quizs: [
                     // ---- 描述性统计 ----
@@ -8565,9 +8565,9 @@ export const careerDirections: CareerDirection[] = [
             },
             {
                 id: 'machine_learning',
-                name: '机器学习',
+                name: '机器学习建模',
                 icon: '🤖',
-                description: 'Scikit-learn入门',
+                description: 'Scikit-learn 建模、特征与评估',
                 priority: 'important',
                 quizs: [
                     // ---- 机器学习基础概念 ----
@@ -8912,13 +8912,13 @@ export const careerDirections: CareerDirection[] = [
         name: 'AI/算法',
         icon: '🤖',
         category: 'ai',
-        description: '人工智能与机器学习算法',
+        description: '结合数学、模型与工程实现落地智能应用',
         skills: [
             {
                 id: 'python_ai',
-                name: 'Python',
+                name: 'Python AI 开发',
                 icon: '🐍',
-                description: 'AI开发主流语言',
+                description: 'AI 实验、数值计算与训练脚本基础',
                 priority: 'core',
                 quizs: [
                     // ---- Python AI基础 ----
@@ -9274,7 +9274,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'ml_basics',
                 name: '机器学习基础',
                 icon: '🧠',
-                description: '监督/无监督学习',
+                description: '监督学习、无监督学习与模型评估基础',
                 priority: 'core',
                 quizs: [
                     // ---- 机器学习基础概念 ----
@@ -9694,7 +9694,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'deep_learning',
                 name: '深度学习',
                 icon: '🔮',
-                description: 'PyTorch/TensorFlow',
+                description: '神经网络、训练流程与主流框架实践',
                 priority: 'core',
                 quizs: [
                     // ---- 深度学习基础 ----
@@ -10057,9 +10057,9 @@ export const careerDirections: CareerDirection[] = [
             },
             {
                 id: 'nlp',
-                name: 'NLP',
+                name: '自然语言处理',
                 icon: '💬',
-                description: '自然语言处理',
+                description: '文本处理、表示学习与 LLM 前置基础',
                 priority: 'important',
                 quizs: [
                     // ---- NLP 基础概念 ----
@@ -10420,7 +10420,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'cv',
                 name: '计算机视觉',
                 icon: '👁️',
-                description: '图像识别与处理',
+                description: '图像处理、识别与视觉建模基础',
                 priority: 'important',
                 quizs: [
                     // ---- CV 基础概念 ----
@@ -10754,7 +10754,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'llm',
                 name: '大语言模型',
                 icon: '🗣️',
-                description: 'GPT/LLM应用开发',
+                description: '大模型应用、提示工程与 RAG 实践',
                 priority: 'core',
                 quizs: [
                     // ---- LLM 基础概念 ----
@@ -11103,7 +11103,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'math',
                 name: '数学基础',
                 icon: '🔢',
-                description: '线性代数/概率统计',
+                description: '线性代数、概率统计与优化基础',
                 priority: 'core',
                 quizs: [
                     // ---- 线性代数基础 ----
@@ -11484,13 +11484,13 @@ export const careerDirections: CareerDirection[] = [
         name: '运维开发',
         icon: '🔧',
         category: 'devops',
-        description: '自动化运维与持续集成部署',
+        description: '打通开发与运维，推进自动化部署、监控与稳定性',
         skills: [
             {
                 id: 'linux',
                 name: 'Linux',
                 icon: '🐧',
-                description: '服务器操作系统',
+                description: '命令行、系统管理与服务器基础',
                 priority: 'core',
                 quizs: [
                     // ---- Linux 基础概念 ----
@@ -11623,9 +11623,9 @@ export const careerDirections: CareerDirection[] = [
             },
             {
                 id: 'docker_devops',
-                name: 'Docker',
+                name: 'Docker 运维',
                 icon: '🐳',
-                description: '容器化技术',
+                description: '镜像、容器与发布流程管理',
                 priority: 'core',
                 quizs: [
                     {
@@ -11782,6 +11782,28 @@ export const careerDirections: CareerDirection[] = [
                         ],
                         answer: 0,
                         explanation: 'Docker Hub 是 Docker 官方提供的公共注册表，用于存储和分发 Docker 镜像。'
+                    },
+                    {
+                        question: '在容器化项目中，`compose.yaml` 或 `docker-compose.yml` 的主要作用是什么？',
+                        options: [
+                            '定义多容器应用的服务、网络和卷',
+                            '构建 Linux 内核',
+                            '查看镜像历史记录',
+                            '启动 Kubernetes 集群'
+                        ],
+                        answer: 0,
+                        explanation: 'Compose 文件用于声明多容器应用的结构，例如 Web、数据库、缓存等服务如何一起启动。'
+                    },
+                    {
+                        question: 'Dockerfile 中 `EXPOSE 3000` 指令通常表示什么？',
+                        options: [
+                            '声明容器会监听 3000 端口',
+                            '自动把宿主机 3000 端口映射进去',
+                            '启动 3000 个容器',
+                            '限制应用只能使用 3000MB 内存'
+                        ],
+                        answer: 0,
+                        explanation: '`EXPOSE` 是镜像元数据，用来说明容器服务默认监听的端口；真正的端口映射仍需要在运行时配置。'
                     }
                 ],
                 resources: [
@@ -11794,7 +11816,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'kubernetes',
                 name: 'Kubernetes',
                 icon: '⚓',
-                description: '容器编排平台',
+                description: '容器编排、服务治理与集群管理',
                 priority: 'core',
                 quizs: [
                     {
@@ -11956,6 +11978,28 @@ export const careerDirections: CareerDirection[] = [
                         ],
                         answer: 0,
                         explanation: '命名空间将集群划分为多个虚拟集群，用于资源分组和隔离。'
+                    },
+                    {
+                        question: 'Kubernetes 中，readinessProbe 主要用来做什么？',
+                        options: [
+                            '判断 Pod 是否已经可以接收流量',
+                            '判断节点是否需要扩容',
+                            '检查镜像是否拉取成功',
+                            '配置容器日志级别'
+                        ],
+                        answer: 0,
+                        explanation: 'readinessProbe 失败时，Pod 不会从 Service 接收流量，常用于等待应用完全启动或依赖准备就绪。'
+                    },
+                    {
+                        question: 'Kubernetes 中，ConfigMap 更适合存放哪类内容？',
+                        options: [
+                            '非敏感配置，如环境变量和应用参数',
+                            '数据库明文密码',
+                            '容器镜像层',
+                            '节点的 CPU 指标'
+                        ],
+                        answer: 0,
+                        explanation: 'ConfigMap 用于保存普通配置；敏感信息更适合放在 Secret 中。'
                     }
                 ],
                 resources: [
@@ -11968,7 +12012,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'cicd',
                 name: 'CI/CD',
                 icon: '🔄',
-                description: '持续集成与部署',
+                description: '自动化构建、测试、发布与回滚',
                 priority: 'core',
                 quizs: [
                     {
@@ -12160,6 +12204,28 @@ export const careerDirections: CareerDirection[] = [
                         ],
                         answer: 0,
                         explanation: '金丝雀发布是一种降低风险的部署策略，通过监控新版本的早期使用情况来决定是否全量发布。'
+                    },
+                    {
+                        question: '在 CI 流水线中缓存依赖（如 npm cache、Maven cache）的主要收益是什么？',
+                        options: [
+                            '减少重复下载时间，加快构建速度',
+                            '替代自动化测试',
+                            '防止代码合并冲突',
+                            '让所有构建都无需联网'
+                        ],
+                        answer: 0,
+                        explanation: '缓存常用依赖能显著缩短构建时间，但仍需要结合锁文件和缓存策略保证可复现性。'
+                    },
+                    {
+                        question: '如果测试阶段失败，较合理的 CI/CD 处理方式通常是？',
+                        options: [
+                            '阻止后续部署阶段继续执行',
+                            '忽略失败直接发布',
+                            '只通知前端同学',
+                            '自动删除整个仓库'
+                        ],
+                        answer: 0,
+                        explanation: '测试失败意味着质量门禁未通过，通常应中断后续发布，避免问题版本进入环境。'
                     }
                 ],
                 resources: [
@@ -12170,9 +12236,9 @@ export const careerDirections: CareerDirection[] = [
             },
             {
                 id: 'cloud',
-                name: '云平台',
+                name: '云服务',
                 icon: '☁️',
-                description: 'AWS/阿里云/腾讯云',
+                description: '云主机、存储、网络与部署基础',
                 priority: 'important',
                 quizs: [
                     {
@@ -12349,6 +12415,28 @@ export const careerDirections: CareerDirection[] = [
                         ],
                         answer: 0,
                         explanation: '区域是云服务提供商在全球分布的独立地理区域，如华北-北京、美国东部等。'
+                    },
+                    {
+                        question: '如果要存放图片、视频、备份文件这类静态资源，通常更适合使用哪种云服务？',
+                        options: [
+                            '对象存储服务',
+                            '关系型数据库',
+                            '消息队列',
+                            '负载均衡器'
+                        ],
+                        answer: 0,
+                        explanation: '对象存储适合大规模静态文件存储，具备高可用、低成本和易于结合 CDN 分发等特点。'
+                    },
+                    {
+                        question: '云平台中的 IAM（身份与访问管理）主要解决什么问题？',
+                        options: [
+                            '管理用户、角色和资源访问权限',
+                            '提高单机 CPU 性能',
+                            '自动压缩镜像体积',
+                            '实现数据库主从复制'
+                        ],
+                        answer: 0,
+                        explanation: 'IAM 用于控制“谁可以访问什么资源以及能执行什么操作”，是云上权限治理的基础。'
                     }
                 ],
                 resources: [
@@ -12361,7 +12449,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'monitoring',
                 name: '监控告警',
                 icon: '📡',
-                description: 'Prometheus/Grafana',
+                description: '指标、日志、告警与可观测性',
                 priority: 'important',
                 quizs: [
                     {
@@ -12553,6 +12641,28 @@ export const careerDirections: CareerDirection[] = [
                         ],
                         answer: 0,
                         explanation: '`up` 是 Prometheus 为每个抓取目标自动生成的内置指标，用于监控目标健康状态。'
+                    },
+                    {
+                        question: '监控体系里常说的“告警疲劳”通常指什么？',
+                        options: [
+                            '低价值告警过多，导致团队对真正异常变得迟钝',
+                            '告警系统 CPU 使用率过高',
+                            '监控数据保留时间太短',
+                            'Grafana 面板颜色太多'
+                        ],
+                        answer: 0,
+                        explanation: '如果告警噪音太多，值班人员容易忽略关键问题，因此需要做好分级、抑制和收敛。'
+                    },
+                    {
+                        question: '在可观测性实践中，SLO 更接近下面哪种含义？',
+                        options: [
+                            '服务可用性或响应时间等目标值',
+                            '日志采集工具名称',
+                            '数据库分片策略',
+                            '容器镜像规范'
+                        ],
+                        answer: 0,
+                        explanation: 'SLO 是 Service Level Objective，表示服务团队对关键指标设定的目标，例如月度可用性 99.9%。'
                     }
                 ],
                 resources: [
@@ -12565,7 +12675,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'shell',
                 name: 'Shell脚本',
                 icon: '💻',
-                description: '自动化脚本编写',
+                description: '批处理脚本与日常运维自动化',
                 priority: 'core',
                 quizs: [
                     {
@@ -12722,6 +12832,28 @@ export const careerDirections: CareerDirection[] = [
                         options: ['$((a + b))', '$[a + b]', 'expr a + b', '以上都是'],
                         answer: 3,
                         explanation: '`$(( ))` 和 `$[ ]` 是整数运算，`expr` 是外部命令，都可以进行算术运算。'
+                    },
+                    {
+                        question: 'Shell 中，管道符 `|` 的主要作用是什么？',
+                        options: [
+                            '把前一个命令的输出作为后一个命令的输入',
+                            '在后台运行命令',
+                            '创建文件夹',
+                            '进行变量赋值'
+                        ],
+                        answer: 0,
+                        explanation: '管道可以把多个小命令串联起来，例如 `ps aux | grep node`。'
+                    },
+                    {
+                        question: '在 Bash 脚本开头加上 `set -e` 通常表示什么？',
+                        options: [
+                            '只要某个命令返回非 0，脚本就立即退出',
+                            '脚本进入交互模式',
+                            '自动导出所有变量',
+                            '忽略所有错误继续执行'
+                        ],
+                        answer: 0,
+                        explanation: '`set -e` 有助于在自动化脚本中尽早暴露失败步骤，避免错误结果继续扩散。'
                     }
                 ],
                 resources: [
@@ -12737,13 +12869,13 @@ export const careerDirections: CareerDirection[] = [
         name: '游戏开发',
         icon: '🎮',
         category: 'game',
-        description: '游戏引擎与游戏逻辑开发',
+        description: '围绕玩法、引擎、图形与联机构建游戏体验',
         skills: [
             {
                 id: 'unity',
                 name: 'Unity',
                 icon: '🎮',
-                description: '跨平台游戏引擎',
+                description: 'Unity 引擎、组件系统与游戏原型开发',
                 priority: 'core',
                 quizs: [
                     {
@@ -12920,9 +13052,9 @@ export const careerDirections: CareerDirection[] = [
             },
             {
                 id: 'unreal',
-                name: 'Unreal Engine',
+                name: 'Unreal',
                 icon: '🎯',
-                description: '3A级游戏引擎',
+                description: '蓝图、渲染与高品质游戏开发',
                 priority: 'important',
                 quizs: [
                     {
@@ -13104,6 +13236,28 @@ export const careerDirections: CareerDirection[] = [
                         options: ['~ 键开启的控制台', '输出日志窗口', '命令行参数', '以上都是'],
                         answer: 0,
                         explanation: '在编辑器中按 `~` 键可以打开控制台，输入命令进行调试、性能分析或修改参数。'
+                    },
+                    {
+                        question: 'Unreal Engine 中，`BeginPlay()` 一般会在什么时候触发？',
+                        options: [
+                            'Actor 或组件进入游戏并开始运行时',
+                            '编译蓝图之前',
+                            '项目打包完成后',
+                            '编辑器启动瞬间'
+                        ],
+                        answer: 0,
+                        explanation: '`BeginPlay()` 是 Unreal 常用生命周期入口，通常用于初始化运行时逻辑。'
+                    },
+                    {
+                        question: '在 Unreal 开发中，Blueprint 和 C++ 更常见的配合方式是什么？',
+                        options: [
+                            '核心系统用 C++，高层逻辑和调试迭代可用 Blueprint',
+                            '两者不能同时出现在同一项目中',
+                            'Blueprint 只能写 UI，不能控制玩法',
+                            'C++ 只用于导入贴图资源'
+                        ],
+                        answer: 0,
+                        explanation: '很多团队会用 C++ 处理底层性能和框架，用 Blueprint 提升策划与玩法迭代效率。'
                     }
                 ],
                 resources: [
@@ -13116,7 +13270,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'csharp',
                 name: 'C#',
                 icon: '💜',
-                description: 'Unity开发语言',
+                description: 'Unity 常用脚本语言与面向对象能力',
                 priority: 'core',
                 quizs: [
                     {
@@ -13278,6 +13432,28 @@ export const careerDirections: CareerDirection[] = [
                         ],
                         answer: 0,
                         explanation: '属性是封装类的字段的成员，包含 `get` 和 `set` 访问器，可以在访问字段时添加逻辑。'
+                    },
+                    {
+                        question: 'C# 中，`interface` 更适合用来描述什么？',
+                        options: [
+                            '一组必须实现的行为契约',
+                            '对象在内存中的地址',
+                            '程序集的版本号',
+                            '数据库表结构'
+                        ],
+                        answer: 0,
+                        explanation: '接口用来定义“能做什么”，不直接提供状态实现，适合抽象能力边界。'
+                    },
+                    {
+                        question: 'C# 中 `async` / `await` 的主要作用是什么？',
+                        options: [
+                            '以更清晰的方式编写异步代码，避免阻塞线程',
+                            '强制代码并行执行',
+                            '替代异常处理',
+                            '自动优化所有算法复杂度'
+                        ],
+                        answer: 0,
+                        explanation: '`async` / `await` 让异步流程更接近同步写法，常用于 I/O、网络请求和资源加载。'
                     }
                 ],
                 resources: [
@@ -13290,7 +13466,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'cpp',
                 name: 'C++',
                 icon: '⚡',
-                description: '游戏底层开发',
+                description: '高性能游戏模块与底层编程基础',
                 priority: 'important',
                 quizs: [
                     {
@@ -13452,6 +13628,28 @@ export const careerDirections: CareerDirection[] = [
                         ],
                         answer: 0,
                         explanation: '命名空间用于封装代码，防止不同库中的相同名称产生冲突。'
+                    },
+                    {
+                        question: 'C++ 中常说的 RAII（资源获取即初始化）核心思想是什么？',
+                        options: [
+                            '把资源生命周期绑定到对象生命周期，离开作用域自动释放',
+                            '所有资源都必须手动 `delete`',
+                            '只在运行时进行类型检查',
+                            '把所有对象都放到全局作用域'
+                        ],
+                        answer: 0,
+                        explanation: 'RAII 是现代 C++ 的核心习惯，用构造和析构管理资源，减少泄漏和异常路径问题。'
+                    },
+                    {
+                        question: '相较于裸指针，`std::unique_ptr` 的主要优势是什么？',
+                        options: [
+                            '独占所有权并在离开作用域时自动释放资源',
+                            '允许任意复制同一块内存',
+                            '只能管理栈对象',
+                            '会让程序永远不抛异常'
+                        ],
+                        answer: 0,
+                        explanation: '`std::unique_ptr` 是常用智能指针，能明确所有权并自动清理资源。'
                     }
                 ],
                 resources: [
@@ -13464,7 +13662,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'game_design',
                 name: '游戏设计',
                 icon: '🎲',
-                description: '游戏机制与玩法',
+                description: '核心循环、关卡与玩法机制设计',
                 priority: 'core',
                 quizs: [
                     {
@@ -13668,7 +13866,7 @@ export const careerDirections: CareerDirection[] = [
                     {
                         question: '什么是“游戏测试”？',
                         options: [
-                            '让真实玩家试玩，收集反馈',
+                            '让真实玩家体验并收集反馈',
                             '检查游戏 bug',
                             '测试游戏性能',
                             '测试网络延迟'
@@ -13686,6 +13884,28 @@ export const careerDirections: CareerDirection[] = [
                         ],
                         answer: 0,
                         explanation: '杠杆作用让玩家的小决策产生重大影响，如《塞尔达传说》中一击必杀隐藏 boss 的机制。'
+                    },
+                    {
+                        question: '新手引导（Onboarding / Tutorial）设计得好的核心价值是什么？',
+                        options: [
+                            '帮助玩家理解核心规则并尽快进入乐趣循环',
+                            '尽量延长无法操作的时间',
+                            '把所有系统一次性讲完',
+                            '只展示世界观设定'
+                        ],
+                        answer: 0,
+                        explanation: '优秀的新手引导会让玩家尽快“上手并感到有成就”，而不是被信息量压垮。'
+                    },
+                    {
+                        question: '游戏中的“有意义选择”更接近下面哪种情况？',
+                        options: [
+                            '不同选项各有收益与代价，玩家需要权衡',
+                            '所有选项结果完全一样',
+                            '只有一个绝对正确答案',
+                            '随机点击也不会影响结果'
+                        ],
+                        answer: 0,
+                        explanation: '有意义选择能提升策略感和参与感，让玩家真正思考“为什么现在这么做”。'
                     }
                 ],
                 resources: [
@@ -13698,7 +13918,7 @@ export const careerDirections: CareerDirection[] = [
                 id: 'shader',
                 name: 'Shader编程',
                 icon: '✨',
-                description: '图形渲染效果',
+                description: '材质、着色器与实时图形效果',
                 priority: 'important',
                 quizs: [
                     {
@@ -13905,6 +14125,28 @@ export const careerDirections: CareerDirection[] = [
                         ],
                         answer: 0,
                         explanation: '`half`（16 位浮点）比 `float`（32 位）精度低但更快，适合颜色、方向等不需要高精度的数据。'
+                    },
+                    {
+                        question: 'Shader 中常见的 `lerp(a, b, t)` 通常表示什么？',
+                        options: [
+                            '按照系数 t 在 a 和 b 之间做线性插值',
+                            '把颜色全部转成黑白',
+                            '随机打乱顶点顺序',
+                            '将纹理压缩成更小尺寸'
+                        ],
+                        answer: 0,
+                        explanation: '`lerp` 常用于在两种颜色、位置或材质参数之间平滑过渡。'
+                    },
+                    {
+                        question: '为什么很多贴图采样和光照计算会放在片段着色器（Fragment Shader）阶段？',
+                        options: [
+                            '因为它针对每个像素执行，能得到更细致的表面结果',
+                            '因为片段着色器只能处理顶点',
+                            '因为顶点着色器不能输出位置',
+                            '因为片段着色器运行次数更少'
+                        ],
+                        answer: 0,
+                        explanation: '片段着色器面向像素级处理，更适合做颜色、法线、光照和后处理等精细计算。'
                     }
                 ],
                 resources: [
@@ -13915,9 +14157,9 @@ export const careerDirections: CareerDirection[] = [
             },
             {
                 id: 'network',
-                name: '网络游戏',
+                name: '网络同步',
                 icon: '🌐',
-                description: '多人游戏同步',
+                description: '多人联机、状态同步与延迟处理',
                 priority: 'important',
                 quizs: [
                     {
@@ -14139,6 +14381,28 @@ export const careerDirections: CareerDirection[] = [
                         ],
                         answer: 0,
                         explanation: '在大型多人在线游戏中，只向玩家发送其感知范围内的实体信息，大幅降低带宽。'
+                    },
+                    {
+                        question: '网络射击游戏中的“延迟补偿”（Lag Compensation）主要是为了解决什么问题？',
+                        options: [
+                            '让高延迟玩家的命中判定尽量接近其开枪时看到的画面',
+                            '提高纹理分辨率',
+                            '减少显存占用',
+                            '让客户端永远拥有最终裁决权'
+                        ],
+                        answer: 0,
+                        explanation: '延迟补偿会结合时间戳和历史状态回溯，改善高延迟下的命中体验。'
+                    },
+                    {
+                        question: '当客户端预测结果和服务器权威结果不一致时，常见做法是什么？',
+                        options: [
+                            '用服务器结果校正客户端状态，并重新平滑同步',
+                            '始终相信客户端，忽略服务器',
+                            '立刻踢掉所有玩家',
+                            '直接关闭网络同步'
+                        ],
+                        answer: 0,
+                        explanation: '客户端预测提升手感，但最终仍要以服务器为准，再通过校正和插值减少画面突兀感。'
                     }
                 ],
                 resources: [

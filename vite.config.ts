@@ -24,6 +24,12 @@ export default defineConfig({
   },
   server: {
     host: true, // 开启本地IP访问
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+    },
   },
   build: {
     sourcemap: true,

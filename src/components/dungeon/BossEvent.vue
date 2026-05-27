@@ -27,7 +27,7 @@ function onChallenge() {
 }
 
 function onCancel() {
-  emit('complete', '下次再来挑战');
+  emit('complete', '先去补强后再回来挑战');
   emit('close');
 }
 </script>
@@ -37,17 +37,17 @@ function onCancel() {
     <div class="absolute inset-0 bg-black/70" @click="emit('close')" />
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 max-w-full animate-[popIn_0.2s_ease-out]">
       <div class="bg-gb-bg border-8 border-gb-darker p-5 text-center">
-        <h3 class="text-gb-darker font-bold text-lg mb-2">👾 Boss: {{ room.event.name }}</h3>
+        <h3 class="text-gb-darker font-bold text-lg mb-2">👹 Boss：{{ room.event.name }}</h3>
         <p class="text-gb-darker text-sm mb-2">{{ room.event.desc }}</p>
 
         <div class="bg-gb-light p-3 rounded border-2 border-gb-darker mb-4">
-          <p class="text-gb-darker text-sm font-bold">准备好挑战终极Boss了吗？</p>
-          <p class="text-gb-darker text-xs mt-1">需要500+战斗力</p>
+          <p class="text-gb-darker text-sm font-bold">准备好迎接最终挑战了吗？</p>
+          <p class="text-gb-darker text-xs mt-1">建议战斗力达到 100 以上再尝试。</p>
         </div>
 
         <div class="flex gap-3 justify-center">
-          <button class="pixel-btn flex-1 bg-red-100" @click="onChallenge">挑战Boss</button>
-          <button class="pixel-btn flex-1" @click="onCancel">准备离开</button>
+          <button class="pixel-btn flex-1 bg-red-100" @click="onChallenge">挑战 Boss</button>
+          <button class="pixel-btn flex-1" @click="onCancel">先去准备</button>
         </div>
       </div>
     </div>

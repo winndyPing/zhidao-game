@@ -11,11 +11,18 @@ import {
   saveUserData,
   loadUserData,
   addUserToList,
-  setCurrentUserPhone,
+  setCurrentUserEmail,
   clearCurrentUser,
+  setAccessToken,
+  getAccessToken,
+  clearAccessToken,
   checkAutoLogin,
 } from '@/utils/storageUtils';
 import { adManager, AD_TYPES } from '@/utils/adManager';
+import { loginWithEmailCode, fetchBootstrapSession } from '@/services/authApi';
+import { fetchGameState, saveGameState } from '@/services/gameApi';
+import { submitRanking } from '@/services/rankingApi';
+import { calculateTotalPower, calculateTotalStat } from '@/utils/rankingSystem';
 
 // ==================== 套装定义 ====================
 
@@ -124,7 +131,7 @@ const staticData: StaticData = {
 function createInitialDynamicData(): DynamicData {
   return {
     user: {
-      phone: '',
+      email: '',
       nickname: '',
       avatar: '',
       isLoggedIn: false,
@@ -165,6 +172,8 @@ function createInitialDynamicData(): DynamicData {
 export const useGameStore = defineStore('game', () => {
   // 动态数据
   const dynamicData = reactive<DynamicData>(createInitialDynamicData());
+  let remoteSyncTimer: ReturnType<typeof setTimeout> | null = null;
+  let remoteSyncInFlight = false;
 
   // 计算属性
   const user = computed(() => dynamicData.user);
@@ -184,68 +193,178 @@ export const useGameStore = defineStore('game', () => {
   // ==================== 本地存储同步 ====================
 
   function syncToStorage(): void {
-    if (dynamicData.user.isLoggedIn && dynamicData.user.phone) {
-      saveUserData(dynamicData.user.phone, JSON.parse(JSON.stringify(dynamicData)));
+    if (dynamicData.user.isLoggedIn && dynamicData.user.email) {
+      saveUserData(dynamicData.user.email, JSON.parse(JSON.stringify(dynamicData)));
+      scheduleRemoteSync();
     }
+  }
+
+  function buildRankingPayload() {
+    return {
+      level: dynamicData.player.level,
+      power: calculateTotalPower(dynamicData.player, dynamicData.inventory.equipment),
+      attack: calculateTotalStat(dynamicData.inventory.equipment, 'attack'),
+      defense: calculateTotalStat(dynamicData.inventory.equipment, 'defense'),
+      hp: calculateTotalStat(dynamicData.inventory.equipment, 'hp') + dynamicData.player.maxHp,
+      equipmentCount: dynamicData.inventory.equipment.length,
+    };
+  }
+
+  async function syncToServer(): Promise<void> {
+    if (remoteSyncInFlight || !dynamicData.user.isLoggedIn || !dynamicData.user.email || !getAccessToken()) {
+      return;
+    }
+
+    remoteSyncInFlight = true;
+    const snapshot = JSON.parse(JSON.stringify(dynamicData)) as DynamicData;
+
+    try {
+      await saveGameState(snapshot);
+      await submitRanking({
+        ...buildRankingPayload(),
+        nickname: snapshot.user.nickname,
+        avatar: snapshot.user.avatar,
+      });
+    } catch (error) {
+      console.error('远端存档同步失败:', error);
+    } finally {
+      remoteSyncInFlight = false;
+    }
+  }
+
+  function scheduleRemoteSync(): void {
+    if (!getAccessToken()) return;
+
+    if (remoteSyncTimer) {
+      clearTimeout(remoteSyncTimer);
+    }
+
+    remoteSyncTimer = setTimeout(() => {
+      void syncToServer();
+    }, 800);
   }
 
   // ==================== 用户操作 ====================
 
-  function login(phone: string): boolean {
-    // 检查是否已有该用户数据
-    const existingData = loadUserData(phone);
-    
-    if (existingData && existingData.user.isLoggedIn) {
-      // 已有数据，直接加载
-      Object.assign(dynamicData, existingData);
-      // 同步等级与CP值
+  function initializeNewUser(email: string, createdAt: number, nickname?: string, avatar?: string): void {
+    Object.assign(dynamicData, createInitialDynamicData());
+    dynamicData.user = {
+      email,
+      nickname: nickname || generateNickname(),
+      avatar: avatar || generateAvatar(email),
+      isLoggedIn: true,
+      createdAt,
+    };
+
+    dynamicData.dungeon.seed = Date.now();
+    dynamicData.dungeon.rooms = dungeonGenerator.generateDungeon(
+      dynamicData.dungeon.seed,
+      dynamicData.dungeon.currentFloor,
+      dynamicData.dungeon.maxFloor,
+      dynamicData.user.careerDirection
+    );
+  }
+
+  async function login(email: string, code: string): Promise<boolean> {
+    const normalizedEmail = email.trim().toLowerCase();
+
+    try {
+      const auth = await loginWithEmailCode(normalizedEmail, code);
+      setAccessToken(auth.accessToken);
+
+      const remoteState = await fetchGameState().catch(() => ({ state: null }));
+      const localState = loadUserData(normalizedEmail);
+
+      if (remoteState.state?.user) {
+        Object.assign(dynamicData, remoteState.state);
+        dynamicData.user = {
+          ...dynamicData.user,
+          ...auth.user,
+          email: normalizedEmail,
+          nickname: dynamicData.user.nickname || auth.user.nickname || generateNickname(),
+          avatar: dynamicData.user.avatar || auth.user.avatar || generateAvatar(normalizedEmail),
+          isLoggedIn: true,
+        };
+      } else if (localState?.user?.isLoggedIn) {
+        Object.assign(dynamicData, localState);
+        dynamicData.user = {
+          ...dynamicData.user,
+          ...auth.user,
+          email: normalizedEmail,
+          nickname: dynamicData.user.nickname || auth.user.nickname || generateNickname(),
+          avatar: dynamicData.user.avatar || auth.user.avatar || generateAvatar(normalizedEmail),
+          isLoggedIn: true,
+        };
+      } else {
+        initializeNewUser(
+          normalizedEmail,
+          auth.user.createdAt || Date.now(),
+          auth.user.nickname,
+          auth.user.avatar,
+        );
+      }
+
       syncLevelWithCP();
-    } else {
-      // 新用户，从0开始
-      const nickname = generateNickname();
-      const avatar = generateAvatar(phone);
-      
-      dynamicData.user = {
-        phone,
-        nickname,
-        avatar,
-        isLoggedIn: true,
-        createdAt: Date.now(),
-      };
-      
-      // 生成初始迷宫（此时还没有选择职业方向）
-      dynamicData.dungeon.seed = Date.now();
-      dynamicData.dungeon.rooms = dungeonGenerator.generateDungeon(
-        dynamicData.dungeon.seed,
-        dynamicData.dungeon.currentFloor,
-        dynamicData.dungeon.maxFloor,
-        dynamicData.user.careerDirection
-      );
-      
+      addUserToList(dynamicData.user);
+      setCurrentUserEmail(dynamicData.user.email);
       syncToStorage();
+      return true;
+    } catch (error) {
+      console.error('登录失败:', error);
+      return false;
     }
-    
-    // 更新用户列表和当前用户
-    addUserToList(dynamicData.user);
-    setCurrentUserPhone(phone);
-    
-    return true;
   }
 
   function logout(): void {
     syncToStorage(); // 先保存数据
     clearCurrentUser();
+    clearAccessToken();
     Object.assign(dynamicData, createInitialDynamicData());
   }
 
-  function tryAutoLogin(): boolean {
+  async function tryAutoLogin(): Promise<boolean> {
+    const accessToken = getAccessToken();
+
+    if (accessToken) {
+      try {
+        const bootstrap = await fetchBootstrapSession();
+
+        if (bootstrap.state?.user) {
+          Object.assign(dynamicData, bootstrap.state);
+          dynamicData.user = {
+            ...dynamicData.user,
+            ...bootstrap.user,
+            nickname: dynamicData.user.nickname || bootstrap.user.nickname || generateNickname(),
+            avatar: dynamicData.user.avatar || bootstrap.user.avatar || generateAvatar(bootstrap.user.email),
+            isLoggedIn: true,
+          };
+        } else {
+          initializeNewUser(
+            bootstrap.user.email,
+            bootstrap.user.createdAt || Date.now(),
+            bootstrap.user.nickname,
+            bootstrap.user.avatar,
+          );
+        }
+
+        syncLevelWithCP();
+        addUserToList(dynamicData.user);
+        setCurrentUserEmail(dynamicData.user.email);
+        syncToStorage();
+        return true;
+      } catch (error) {
+        console.error('自动登录失败，回退本地缓存:', error);
+        clearAccessToken();
+      }
+    }
+
     const result = checkAutoLogin();
     if (result) {
       Object.assign(dynamicData, result.data);
-      // 同步等级与CP值
       syncLevelWithCP();
       return true;
     }
+
     return false;
   }
 

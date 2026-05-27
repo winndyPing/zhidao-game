@@ -100,7 +100,7 @@ async function copyTemplate(id: string, content: string) {
 
         <div class="flex flex-col gap-3 sm:flex-row">
           <button class="pixel-btn !m-0 !px-6 !py-3 text-sm sm:text-base" @click="emit('enterDemo')">
-            进入 Demo 体验
+            进入互动体验
           </button>
           <a
             href="#offers"

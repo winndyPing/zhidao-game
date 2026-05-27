@@ -52,7 +52,7 @@ export function generateNickname(): string {
 
 /**
  * 生成随机头像（SVG 数据 URI）
- * @param seed 用于生成确定性头像的种子（如手机号）
+ * @param seed 用于生成确定性头像的种子（如邮箱）
  */
 export function generateAvatar(seed: string): string {
   // 从种子生成哈希值
@@ -117,17 +117,22 @@ export function generateVerificationCode(): string {
 }
 
 /**
- * 验证手机号格式
+ * 验证邮箱格式
  */
-export function validatePhone(phone: string): boolean {
-  const phoneRegex = /^1[3-9]\d{9}$/;
-  return phoneRegex.test(phone);
+export function validateEmail(email: string): boolean {
+  const normalized = email.trim().toLowerCase();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(normalized);
 }
 
 /**
- * 格式化手机号（隐藏中间4位）
+ * 格式化邮箱（隐藏部分用户名）
  */
-export function maskPhone(phone: string): string {
-  if (phone.length !== 11) return phone;
-  return phone.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2');
+export function maskEmail(email: string): string {
+  const [name, domain] = email.split('@');
+  if (!name || !domain) return email;
+  if (name.length <= 2) {
+    return `${name[0] ?? '*'}***@${domain}`;
+  }
+  return `${name.slice(0, 2)}***@${domain}`;
 }
